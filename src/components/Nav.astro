@@ -1,0 +1,30 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+
+---
+<header>
+<Fragment>
+<nav class="">
+    <section class="textbold">
+      <ul class="flex gap-4 [&>li]:p-0">
+        <li><HeaderLink href="/">Home</HeaderLink></li>
+        <li><HeaderLink href="/plog">Blog</HeaderLink></li>
+        <li><HeaderLink href="/projects">Projects</HeaderLink></li>
+      </ul>
+    </section>
+</nav>
+</Fragment>
+</header>
+
+<style>
+    header {
+      grid-area: header;
+      display: grid;
+      align-items: center;
+      height: 90px;
+      grid-template-columns: minmax(0, 1fr) minmax(0, max-content) minmax(
+          0,
+          max-content
+        );
+    }
+</style>

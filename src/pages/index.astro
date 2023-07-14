@@ -3,13 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Jim's Personal Blog.">
 	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
+		<h1 class="text-3xl text-center font-bold">Welcome to <span class="text-gradient">Jim's Personal Blog</span></h1>
 		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
+			Hi! Im <strong>Jim</strong>, welcome to my website! Enjoy here 😀
 		</p>
+
 		<ul role="list" class="link-card-grid">
 			<Card
 				href="https://docs.astro.build/"
@@ -39,19 +39,6 @@ import Card from '../components/Card.astro';
 	main {
 		margin: auto;
 		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
 	}
 	.instructions {
 		line-height: 1.6;
