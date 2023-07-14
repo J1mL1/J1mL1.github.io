@@ -1,0 +1,50 @@
+
+
+:root {
+    --accent: 124, 58, 237;
+    --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+}
+html {
+    font-family: system-ui, sans-serif;
+    background-color: #F6F6F6;
+}
+code {
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+        Bitstream Vera Sans Mono, Courier New, monospace;
+}
+.text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+}
+
+/* animation line */
+.animated-link {
+    position: relative;
+    box-decoration-break: clone;
+    text-decoration: none;
+}
+
+.animated-link:hover:after {
+    transform: translateZ(0) scale(1);
+}
+
+
+.animated-link:after {
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    content: "";
+    height: 2px;
+    position: absolute;
+    transform: translateZ(0) scaleX(0);
+    transform-origin: left center;
+    transition: all .150s ease-in-out;
+    background-image: linear-gradient(to right, rgb(var(--accent)), #da62c4);
+}
+
+.animated-link.show:after {
+    transform: translateZ(0) scale(1);
+}
