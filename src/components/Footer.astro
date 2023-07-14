@@ -1,0 +1,18 @@
+---
+
+---
+
+<footer>
+    <p class="text-center">
+        J1mL1 Copyright &copy; 
+        <span id ='copyright'></span> | Proudly built with 
+        <span class="text-gradient">Astro</span>
+    </p>
+</footer>
+
+<script>
+    document.querySelector('#copyright').textContent = 
+    new Date()
+        .getFullYear()
+        .toString();
+</script>
