@@ -1,9 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import PhotoStream from '../components/PhotoStream';
+import '../styles/photo-stream.css';
+
 ---
 
-<Layout title="Jim's Personal Blog.">
+<Layout title="Photo Stream">
     <main>
-        Hi vv ♥
+        <PhotoStream client:load />
     </main>
 </Layout>
