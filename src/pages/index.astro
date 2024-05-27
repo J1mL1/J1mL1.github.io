@@ -1,13 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+
+const pageTitle = "Jim's Personal Blog."
 ---
 
-<Layout title="Jim's Personal Blog.">
+<Layout title={pageTitle}>
 	<main>
 		<h1 class="text-3xl text-center font-bold">Welcome to <span class="text-gradient">Jim's Personal Blog</span></h1>
 		<p class="instructions">
-			Hi! Im <strong>Jim</strong>, welcome to my website! Enjoy here 😀
+			Hi! Im <strong>Jim</strong>, welcome to my Blog! Enjoy here 😀
 		</p>
 
 		<ul role="list" class="link-card-grid">
