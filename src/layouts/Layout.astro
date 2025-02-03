@@ -3,12 +3,13 @@ export interface Props {
 	title: string;
 }
 
-// import styles
 import "../styles/global.css";
+import "../styles/components.css";
 
 // import component
 import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
+import ColorBar from '../components/ColorBar.jsx';
 
 const { title } = Astro.props;
 ---
@@ -22,13 +23,58 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+
+		<script is:inline>
+			// render dark mode
+			const theme = (() => {
+				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+					return localStorage.getItem('theme');
+				}
+				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					return 'dark';
+				}
+				return 'light';
+			})();
+			
+			if (theme === 'dark') {
+				document.documentElement.classList.add('dark');
+			}
+			
+			// 防止闪烁
+			document.documentElement.style.visibility = 'visible';
+		</script>
+
+		<style is:inline>
+			html {
+				visibility: hidden;
+			}
+		</style>
+		<script is:inline>
+			document.addEventListener('DOMContentLoaded', () => {
+				const storedGradient = localStorage.getItem('accent-gradient');
+				const storedAccent = localStorage.getItem('accent');
+				const storedDarkGradient = localStorage.getItem('accent-gradient-dark');
+				if (storedGradient) {
+					document.documentElement.style.setProperty('--accent-gradient', storedGradient);
+				}
+				if (storedAccent) {
+					document.documentElement.style.setProperty('--accent', storedAccent);
+				}
+				if (storedDarkGradient) {
+					document.documentElement.style.setProperty('--accent-gradient-dark', storedDarkGradient);
+				}
+			});
+		</script>
 	</head>
 
-	<body
-		class="mx-auto min-h-screen px-6 sm:px-8"
-	>
-		<Nav />
-		<slot />
-		<Footer />
+	<body class="min-h-screen">
+		<div class="">
+			<Nav />
+			<main class="flex-3 mt-16"> 
+				<slot />
+			</main>
+			<Footer />
+		</div>
+		<ColorBar client:load />
 	</body>
 </html>

@@ -1,0 +1,56 @@
+<div class="theme-toggle">
+  <label class="switch">
+    <input type="checkbox" id="theme-toggle">
+    <span class="slider round"></span>
+  </label>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle') as HTMLInputElement;
+    
+    if (!themeToggle) {
+      console.error('Theme toggle element not found');
+      return;
+    }
+
+    const applyStoredTheme = () => {
+      const storedGradient = localStorage.getItem('accent-gradient');
+      const storedAccent = localStorage.getItem('accent');
+      const storedDarkGradient = localStorage.getItem('accent-gradient-dark');
+      if (storedGradient) {
+        document.documentElement.style.setProperty('--accent-gradient', storedGradient);
+      }
+      if (storedAccent) {
+        document.documentElement.style.setProperty('--accent', storedAccent);
+      }
+      if (storedDarkGradient) {
+        document.documentElement.style.setProperty('--accent-gradient-dark', storedDarkGradient);
+      }
+    };
+
+    // 检查本地存储的主题设置
+    if (localStorage.getItem('theme') === 'dark' || 
+        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      themeToggle.checked = true;
+    }
+
+    applyStoredTheme();
+
+    // 切换主题
+    themeToggle.addEventListener('change', (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      if (target.checked) {
+        console.log('Switched to dark mode');
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        console.log('Switched to light mode');
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+      applyStoredTheme();
+    });
+  });
+</script>

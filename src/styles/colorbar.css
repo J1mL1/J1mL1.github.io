@@ -1,0 +1,40 @@
+.colorbar {
+    position: fixed;
+    top: 50%;
+    right: -40px; 
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: right 0.3s ease; 
+    padding-right: 4px; 
+}
+
+.colorbar-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100px; 
+    height: 100vh; 
+
+}
+
+  
+.colorbar-container:hover 
+.colorbar {
+    right: 10px; 
+}
+
+.color-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.3s ease;
+}
+
+.color-circle:hover {
+    transform: scale(1.15);
+}
