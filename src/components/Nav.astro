@@ -1,30 +1,30 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
-
+import ThemeToggle from "./ThemeToggle.astro";
+import "../styles/navigation.css";
 ---
-<header>
-<Fragment>
-<nav class="">
-    <section class="textbold">
-      <ul class="flex gap-4 [&>li]:p-0">
-        <li><HeaderLink href="/">Home</HeaderLink></li>
-        <li><HeaderLink href="/plog">Blog</HeaderLink></li>
-        <li><HeaderLink href="/projects">Projects</HeaderLink></li>
-      </ul>
-    </section>
-</nav>
-</Fragment>
+<header class="site-header">
+    <div class="hidden-nav-container">
+        <nav class="hidden-nav">
+            <div class="nav-wrapper">
+                <div class="flex gap-4">
+                    <HeaderLink href="/">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                    </HeaderLink>
+                    <HeaderLink href="/plog">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15" />
+                        </svg>
+                    <HeaderLink href="/projects">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                    </HeaderLink>
+                </div>
+                <ThemeToggle />
+            </div>
+        </nav>
+    </div>
 </header>
-
-<style>
-    header {
-      grid-area: header;
-      display: grid;
-      align-items: center;
-      height: 90px;
-      grid-template-columns: minmax(0, 1fr) minmax(0, max-content) minmax(
-          0,
-          max-content
-        );
-    }
-</style>

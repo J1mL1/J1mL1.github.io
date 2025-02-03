@@ -1,0 +1,71 @@
+---
+import SidebarItem from './SidebarItem.astro';
+
+const ukLocations = [
+  { title: "Knaresborough", group: "knaresborough" },
+  { title: "Mam Tor", group: "mamtor" },
+  { title: "London", group: "london" },
+  { title: "Blackpool", group: "blackpool" },
+  { title: "Lake District", group: "lakedistrict" },
+  { title: "Cornwall", group: "cornwall" },
+  { title: "Edinburgh", group: "edinburgh" },
+  { title: "Rye", group: "rye" }
+];
+
+const randomPicks = [
+  { title: "All Photos", group: "" },
+  { title: "Featured Photos", group: "featured" },
+  { title: "Best Moments", group: "best" },
+  { title: "Unexpected Shots", group: "unexpected" },
+];
+---
+
+<div class="photo-sidebar-container">
+  <h1 class="photos-title">My Photo Collection</h1>
+
+  <div class="sidebar-section">
+    <h3 class="section-title">Locations</h3>
+    <ul class="">
+      <SidebarItem 
+        title="United Kingdom" 
+        children={ukLocations}
+      />
+    </ul>
+  </div>
+
+  <div class="sidebar-section">
+    <h3 class="section-title">Random Picks</h3>
+    <ul class="">
+      {randomPicks.map(item => (
+        <SidebarItem {...item} />
+      ))}
+    </ul>
+  </div>
+</div>
+
+<script>
+  import { setPhotoGroup } from '../stores/photoStore';
+  
+  // 处理点击事件
+  document.querySelectorAll('a[data-group]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const group = e.currentTarget.dataset.group;
+      // 移除其他active类
+      document.querySelectorAll('a[data-group]').forEach(a => a.classList.remove('active'));
+      // 添加active类到当前项
+      e.currentTarget.classList.add('active');
+      setPhotoGroup(group || null);
+    });
+  });
+
+  // 处理展开/折叠
+  document.querySelectorAll('.location-toggle').forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      const li = e.currentTarget.parentElement;
+      li.classList.toggle('expanded');
+      e.currentTarget.classList.toggle('expanded');
+    });
+  });
+</script>

@@ -1,0 +1,33 @@
+---
+interface Props {
+  title: string;
+  group?: string;
+  children?: any[];
+  isNested?: boolean;
+}
+
+const { title, group = "", children, isNested = false } = Astro.props;
+---
+
+<li class="sidebar-item">
+  {children ? (
+    <>
+      <div class="location-toggle">
+        <span>{title}</span>
+      </div>
+      <ul class="nested-list">
+        {children.map((child, index) => (
+          <Astro.self {...child} isNested={true} />
+        ))}
+      </ul>
+    </>
+  ) : (
+    <a 
+      href="#" 
+      class="sidebar-link" 
+      data-group={group}
+    >
+      <p>{title}</p>
+    </a>
+  )}
+</li>

@@ -1,70 +1,42 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import '../styles/pages/index.css';
 
-const pageTitle = "Jim's Personal Blog."
+const pageTitle = "Jim的个人空间"
 ---
 
 <Layout title={pageTitle}>
-	<main>
-		<h1 class="text-3xl text-center font-bold">Welcome to <span class="text-gradient">Jim's Personal Blog</span></h1>
-		<p class="instructions">
-			Hi! Im <strong>Jim</strong>, welcome to my Blog! Enjoy here 😀
-		</p>
+    <h1 class="page-title">欢迎来到 <span class="text-gradient">Jim的小天地</span></h1>
+    <p class="card-container">
+        你好! 我是 <strong>Jim</strong>, 一名热爱编程与摄影的计算机学生。这里记录着我的项目记录、生活感悟和摄影作品 📝
+    </p>
 
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
+    <ul role="list" class="content-grid">
+        <Card
+            href="/blog"
+            title="技术博客"
+            body="分享编程经验、学习笔记和技术见解"
+        />
+        <Card
+            href="/plog"
+            title="摄影日志"
+            body="记录生活瞬间，分享摄影作品集 📸"
+        />
+        <Card
+            href="/projects"
+            title="项目展示"
+            body="记录我参与开发的有趣项目"
+        />
+        <Card
+            href="/about"
+            title="关于我"
+            body="了解更多关于我的故事和经历"
+        />
+        <Card
+            href="/contact"
+            title="联系我"
+            body="有任何问题或想法都可以与我交流 👋"
+        />
+    </ul>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
-</style>
