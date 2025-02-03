@@ -1,0 +1,28 @@
+---
+import '../../styles/pages/plog-enter.css';
+import { getRandomPhoto } from '../../stores/randomPhoto';
+
+const randomPhoto = getRandomPhoto();
+---
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photography - Jim Li</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-container">
+        <div class="plog-enter" style={`background-image: url(${randomPhoto.src})`}>
+            <div class="background-overlay"></div>
+            <main class="content">
+                <h1>Jim Li</h1>
+                <h2>PHOTOGRAPHY</h2>
+                <a href="/plog/content" class="enter-button">ENTER</a>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

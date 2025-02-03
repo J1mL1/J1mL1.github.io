@@ -1,0 +1,17 @@
+{
+  "photoGroups": {
+    "lotus": [
+      { "src": "/lotus/DSCF6440_1.jpg", "alt": "荷塘剪影", "caption": "荷塘剪影 - 2023夏", "date": "2023-07-15" },
+      { "src": "/lotus/DSCF6442_1.jpg", "alt": "荷花特写", "caption": "荷花特写 - 早晨的露珠", "date": "2023-07-15" },
+      { "src": "/lotus/DSCF6607.jpg", "alt": "荷叶", "caption": "雨后荷塘", "date": "2023-07-15" },
+      { "src": "/lotus/DSCF6615.jpg", "alt": "荷叶", "caption": "雨后荷塘", "date": "2023-07-15" },
+      { "src": "/lotus/DSCF6713.jpg", "alt": "荷叶", "caption": "雨后荷塘", "date": "2023-07-15" }
+    ],
+    "rye": [
+      { "src": "/lotus/DSCF6551_2.jpg", "alt": "月季花", "caption": "月季花 - 2023夏", "date": "2023-07-15" },
+      { "src": "/lotus/DSCF6571.jpg", "alt": "月季花", "caption": "月季花 - 2023夏", "date": "2023-07-15" },
+      { "src": "/lotus/DSCF6589.jpg", "alt": "月季花", "caption": "月季花 - 2023夏", "date": "2023-07-15" },
+      { "src": "/lotus/DSCF6551.jpg", "alt": "月季花", "caption": "月季花 - 2023夏", "date": "2023-07-15" }
+    ]
+  }
+}

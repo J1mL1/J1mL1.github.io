@@ -1,0 +1,13 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PhotoStream from '../../components/PhotoStream';
+import PhotoSidebar from '../../components/PhotoSidebar.astro';
+import '../../styles/pages/plog.css';
+---
+
+<Layout title="Photo Stream">
+    <div class="photo-page">
+        <PhotoSidebar/>
+        <PhotoStream client:only="react"/>
+    </div>
+</Layout>
