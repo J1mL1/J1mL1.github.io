@@ -1,0 +1,16 @@
+:root {
+    --accent: 124, 58, 237;
+    --accent-gradient-light: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+    --accent-gradient-dark: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, #2a2a2a 60%);
+    --accent-gradient: var(--accent-gradient-light);
+    --bg-color: #F6F6F6;
+    --text-color: #1a1a1a;
+    --card-bg: white;
+}
+
+:root.dark {
+    --bg-color: #1a1a1a;
+    --text-color: #F6F6F6;
+    --card-bg: #2a2a2a;
+    --accent-gradient: var(--accent-gradient-dark);
+} 

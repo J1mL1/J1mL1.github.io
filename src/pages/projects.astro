@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/main.css';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+const pageTitle = "My Projects";
+const projectsData = await getCollection('projects');
+// Sort by date, newest first
+projectsData.sort((a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) => 
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+---
+
+<Layout title={pageTitle}>
+    <div class="container">
+        <h1 class="page-title">My <span class="text-gradient">Project</span> Collection</h1>
+        <p class="description">
+            Here are some of my recent projects. Click to view details.
+        </p>
+
+        <div class="projects-list">
+            {projectsData.map((project: CollectionEntry<'projects'>) => (
+                <div class="project-card">
+                    <a href={`/projects/${project.data.id}`} class="project-link">
+                        <div class="project-content">
+                            <div class="project-image-container">
+                                <img 
+                                    src={project.data.thumbnail} 
+                                    alt={project.data.title} 
+                                    class="project-image"
+                                    loading="lazy"
+                                    decoding="async"
+                                    onload="this.classList.add('loaded')"
+                                    onerror="this.src='/images/placeholder.jpg'"
+                                />
+                                <div class="project-loading">
+                                    <div class="spinner"></div>
+                                </div>
+                            </div>
+                            <div class="project-details">
+                                <h2 class="project-title">{project.data.title}</h2>
+                                <p class="project-desc">{project.data.description}</p>
+                                <div class="project-meta">
+                                    <div class="project-tags">
+                                        {project.data.tags.map((tag: string) => (
+                                            <span class="project-tag">{tag}</span>
+                                        ))}
+                                    </div>
+                                    <div class="project-date">{project.data.date}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            ))}
+        </div>
+    </div>
+</Layout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll<HTMLImageElement>('.project-image');
+        images.forEach(img => {
+            if (img.complete) {
+                img.classList.add('loaded');
+                const loadingDiv = img.parentElement?.querySelector('.project-loading');
+                if (loadingDiv) (loadingDiv as HTMLElement).style.opacity = '0';
+            } else {
+                img.addEventListener('load', () => {
+                    img.classList.add('loaded');
+                    const loadingDiv = img.parentElement?.querySelector('.project-loading');
+                    if (loadingDiv) (loadingDiv as HTMLElement).style.opacity = '0';
+                });
+            }
+        });
+    });
+</script> 
