@@ -3,8 +3,7 @@ export interface Props {
 	title: string;
 }
 
-import "../styles/global.css";
-import "../styles/components.css";
+import "../styles/main.css";
 
 // import component
 import Footer from '../components/Footer.astro';
@@ -40,7 +39,7 @@ const { title } = Astro.props;
 				document.documentElement.classList.add('dark');
 			}
 			
-			// 防止闪烁
+			// Prevent flickering
 			document.documentElement.style.visibility = 'visible';
 		</script>
 

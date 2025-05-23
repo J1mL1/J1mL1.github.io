@@ -1,0 +1,18 @@
+/* Base styles */
+@import './base/variables.css';
+@import './base/layout.css';
+@import './base/utilities.css';
+@import './base/dark-mode.css';
+
+/* Component styles */
+@import './components/card.css';
+@import './components/instructions.css';
+@import './components/navigation.css';
+@import './components/theme-toggle.css';
+@import './components/colorbar.css';
+
+/* Page-specific styles */
+@import './pages/index.css';
+@import './pages/plog.css';
+@import './pages/projects.css';
+@import './pages/about.css'; 

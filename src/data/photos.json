@@ -12,6 +12,23 @@
       { "src": "/lotus/DSCF6571.jpg", "alt": "月季花", "caption": "月季花 - 2023夏", "date": "2023-07-15" },
       { "src": "/lotus/DSCF6589.jpg", "alt": "月季花", "caption": "月季花 - 2023夏", "date": "2023-07-15" },
       { "src": "/lotus/DSCF6551.jpg", "alt": "月季花", "caption": "月季花 - 2023夏", "date": "2023-07-15" }
+    ],
+    "remote": [
+      { "src": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e", "alt": "山间湖泊", "caption": "清晨的山间湖泊 - 挪威", "date": "2023-12-10" },
+      { "src": "https://images.unsplash.com/photo-1501854140801-50d01698950b", "alt": "山脉日落", "caption": "壮丽的山脉日落", "date": "2023-12-09" },
+      { "src": "https://images.unsplash.com/photo-1433086966358-54859d0ed716", "alt": "瀑布", "caption": "森林中的瀑布", "date": "2023-12-08" },
+      { "src": "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07", "alt": "森林小径", "caption": "阳光穿透的森林小径", "date": "2023-12-07" },
+      { "src": "https://images.unsplash.com/photo-1472214103451-9374bd1c798e", "alt": "田野日落", "caption": "金色田野的日落", "date": "2023-12-06" },
+      { "src": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05", "alt": "高山", "caption": "云雾缭绕的高山", "date": "2023-12-05" },
+      { "src": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e", "alt": "森林", "caption": "阳光照耀的森林", "date": "2023-12-04" },
+      { "src": "https://images.unsplash.com/photo-1497449493050-aad1e7cad165", "alt": "花卉", "caption": "盛开的野花", "date": "2023-12-03" }
+    ],
+    "city": [
+      { "src": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34", "alt": "巴黎", "caption": "埃菲尔铁塔 - 巴黎", "date": "2023-11-20" },
+      { "src": "https://images.unsplash.com/photo-1522083165195-3424ed129620", "alt": "东京", "caption": "东京街景", "date": "2023-11-19" },
+      { "src": "https://images.unsplash.com/photo-1514565131-fce0801e5785", "alt": "纽约", "caption": "纽约时代广场", "date": "2023-11-18" },
+      { "src": "https://images.unsplash.com/photo-1526129318478-31e875a36e74", "alt": "伦敦", "caption": "伦敦眼夜景", "date": "2023-11-17" },
+      { "src": "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e", "alt": "威尼斯", "caption": "威尼斯水道", "date": "2023-11-16" }
     ]
   }
 }

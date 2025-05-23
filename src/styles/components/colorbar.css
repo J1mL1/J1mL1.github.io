@@ -16,10 +16,8 @@
     right: 0;
     width: 100px; 
     height: 100vh; 
-
 }
 
-  
 .colorbar-container:hover 
 .colorbar {
     right: 10px; 
@@ -37,4 +35,4 @@
 
 .color-circle:hover {
     transform: scale(1.15);
-}
+} 

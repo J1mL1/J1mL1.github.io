@@ -1,21 +1,20 @@
 import React, { useEffect } from 'react';
-import '../styles/colorbar.css';
 
 const gradients = [
   {
-    label: '默认',
+    label: 'Default',
     value: 'linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%)',
     accent: '124, 58, 237',
     darkValue: 'linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, #2a2a2a 60%)'
   },
   {
-    label: '蓝色',
+    label: 'Blue',
     value: 'linear-gradient(45deg, #00b4d8, #48cae4 30%, white 60%)',
     accent: '0, 180, 216',
     darkValue: 'linear-gradient(45deg, #00b4d8, #48cae4 30%, #2a2a2a 60%)'
   },
   {
-    label: '绿色',
+    label: 'Green',
     value: 'linear-gradient(45deg, #16a34a, #4ade80 30%, white 60%)',
     accent: '22, 163, 74',
     darkValue: 'linear-gradient(45deg, #16a34a, #4ade80 30%, #2a2a2a 60%)'

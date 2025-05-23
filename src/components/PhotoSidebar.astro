@@ -18,10 +18,28 @@ const randomPicks = [
   { title: "Best Moments", group: "best" },
   { title: "Unexpected Shots", group: "unexpected" },
 ];
+
+const collections = [
+  { title: "Lotus Series", group: "lotus" },
+  { title: "Rose Collection", group: "rye" },
+  { title: "Nature Landscapes (Online)", group: "remote" },
+  { title: "Urban Scenes (Online)", group: "city" }
+];
 ---
 
 <div class="photo-sidebar-container">
-  <h1 class="photos-title">My Photo Collection</h1>
+  <div class="avatar-container">
+    <img src="/my_avatar.png" alt="User Avatar" class="sidebar-avatar" />
+  </div>
+
+  <div class="sidebar-section">
+    <h3 class="section-title">My Collections</h3>
+    <ul class="sidebar-list">
+      {collections.map(item => (
+        <SidebarItem {...item} />
+      ))}
+    </ul>
+  </div>
 
   <div class="sidebar-section">
     <h3 class="section-title">Locations</h3>
@@ -46,26 +64,28 @@ const randomPicks = [
 <script>
   import { setPhotoGroup } from '../stores/photoStore';
   
-  // 处理点击事件
+  // Handle click events
   document.querySelectorAll('a[data-group]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      const group = e.currentTarget.dataset.group;
-      // 移除其他active类
+      const target = e.currentTarget as HTMLElement;
+      const group = target.dataset.group;
+      // Remove other active classes
       document.querySelectorAll('a[data-group]').forEach(a => a.classList.remove('active'));
-      // 添加active类到当前项
-      e.currentTarget.classList.add('active');
+      // Add active class to current item
+      target.classList.add('active');
       setPhotoGroup(group || null);
     });
   });
 
-  // 处理展开/折叠
+  // Handle expand/collapse
   document.querySelectorAll('.location-toggle').forEach(toggle => {
     toggle.addEventListener('click', (e) => {
       e.preventDefault();
-      const li = e.currentTarget.parentElement;
+      const target = e.currentTarget as HTMLElement;
+      const li = target.parentElement as HTMLElement;
       li.classList.toggle('expanded');
-      e.currentTarget.classList.toggle('expanded');
+      target.classList.toggle('expanded');
     });
   });
 </script>
