@@ -1,0 +1,45 @@
+/* Dark mode specific styles */
+.dark .instructions {
+    background-color: #2a2a2a;
+    border-color: rgba(var(--accent), 40%);
+}
+
+.dark .nav-link {
+    color: rgb(var(--accent));
+}
+
+.dark .nav-link:hover {
+    background-color: rgba(var(--accent), 0.2);
+}
+
+.dark .text-gradient {
+    background-image: var(--accent-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+}
+
+.dark .link-card {
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -2px rgba(255, 255, 255, 0.1);
+}
+
+.dark .link-card > a {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.dark .link-card p {
+    color: var(--text-color);
+}
+
+.dark .site-header {
+    background-color: var(--bg-color);
+    border-bottom: none;
+}
+
+.dark .nav-link svg {
+    stroke: var(--text-color);
+} 

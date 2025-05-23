@@ -1,0 +1,75 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/main.css';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projectEntries = await getCollection('projects');
+  return projectEntries.map((entry: CollectionEntry<'projects'>) => ({
+    params: { id: entry.data.id },
+    props: { entry },
+  }));
+}
+
+type Props = {
+  entry: CollectionEntry<'projects'>;
+};
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title}>
+  <div class="container project-detail-container">
+    <div class="project-header">
+            <a href="/projects" class="back-link">        &larr; Back to Projects      </a>
+      <h1 class="page-title">{entry.data.title}</h1>
+      <div class="project-meta">
+        <div class="project-tags">
+          {entry.data.tags.map((tag: string) => (
+            <span class="project-tag">{tag}</span>
+          ))}
+        </div>
+        <div class="project-date">{entry.data.date}</div>
+      </div>
+    </div>
+
+    <div class="project-banner">
+      <img 
+        src={entry.data.thumbnail} 
+        alt={entry.data.title} 
+        class="project-banner-image"
+        loading="lazy"
+        decoding="async"
+        onload="this.classList.add('loaded')"
+        onerror="this.src='/images/placeholder.jpg'"
+      />
+      <div class="project-loading">
+        <div class="spinner"></div>
+      </div>
+    </div>
+
+    <article class="markdown-content">
+      <Content />
+    </article>
+  </div>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll<HTMLImageElement>('.project-banner-image');
+    images.forEach(img => {
+      if (img.complete) {
+        img.classList.add('loaded');
+        const loadingDiv = img.parentElement?.querySelector('.project-loading');
+        if (loadingDiv) (loadingDiv as HTMLElement).style.opacity = '0';
+      } else {
+        img.addEventListener('load', () => {
+          img.classList.add('loaded');
+          const loadingDiv = img.parentElement?.querySelector('.project-loading');
+          if (loadingDiv) (loadingDiv as HTMLElement).style.opacity = '0';
+        });
+      }
+    });
+  });
+</script> 

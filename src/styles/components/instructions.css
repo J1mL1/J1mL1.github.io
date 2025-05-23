@@ -1,0 +1,23 @@
+.instructions {
+    line-height: 1.8;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(var(--accent), 25%);
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 0.8rem;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.instructions code {
+    font-size: 0.875em;
+    font-weight: bold;
+    background: rgba(var(--accent), 12%);
+    color: rgb(var(--accent));
+    border-radius: 4px;
+    padding: 0.3em 0.45em;
+}
+
+.instructions strong {
+    color: rgb(var(--accent));
+} 

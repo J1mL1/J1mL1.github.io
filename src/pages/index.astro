@@ -1,42 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
-import '../styles/pages/index.css';
+import '../styles/main.css';
 
-const pageTitle = "Jim的个人空间"
+const pageTitle = "Jim's Personal Space"
 ---
 
 <Layout title={pageTitle}>
-    <h1 class="page-title">欢迎来到 <span class="text-gradient">Jim的小天地</span></h1>
-    <p class="card-container">
-        你好! 我是 <strong>Jim</strong>, 一名热爱编程与摄影的计算机学生。这里记录着我的项目记录、生活感悟和摄影作品 📝
-    </p>
+    <div class="container">
+        <h1 class="page-title">Welcome to <span class="text-gradient">Jim's Corner</span></h1>
+        <p class="card-container">
+            Hello! I'm <strong>Jim</strong>, a computer science student passionate about programming and photography. This is where I document my projects, life insights, and photographic works 📝
+        </p>
 
-    <ul role="list" class="content-grid">
-        <Card
-            href="/blog"
-            title="技术博客"
-            body="分享编程经验、学习笔记和技术见解"
-        />
-        <Card
-            href="/plog"
-            title="摄影日志"
-            body="记录生活瞬间，分享摄影作品集 📸"
-        />
-        <Card
-            href="/projects"
-            title="项目展示"
-            body="记录我参与开发的有趣项目"
-        />
-        <Card
-            href="/about"
-            title="关于我"
-            body="了解更多关于我的故事和经历"
-        />
-        <Card
-            href="/contact"
-            title="联系我"
-            body="有任何问题或想法都可以与我交流 👋"
-        />
-    </ul>
+        <ul role="list" class="content-grid">
+            <Card
+                href="/blog"
+                title="Tech Blog"
+                body="Sharing programming experience, study notes and technical insights"
+            />
+            <Card
+                href="/plog"
+                title="Photography Journal"
+                body="Capturing life moments, sharing photography collections 📸"
+            />
+            <Card
+                href="/projects"
+                title="Project Showcase"
+                body="Documenting interesting projects I've participated in"
+            />
+            <Card
+                href="/about"
+                title="About Me"
+                body="Learn more about my story and experiences"
+            />
+            <Card
+                href="/contact"
+                title="Contact Me"
+                body="Feel free to reach out with any questions or ideas 👋"
+            />
+        </ul>
+    </div>
 </Layout>
+
+<style>
+    .container {
+        margin: 0 auto;
+        padding: 2rem;
+        max-width: 1200px;
+    }
+</style>
