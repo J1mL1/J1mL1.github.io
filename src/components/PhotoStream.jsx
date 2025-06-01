@@ -202,7 +202,7 @@ const PhotoStream = () => {
       <div className='photo-stream-container'>
         <div className="masonry-grid" ref={gridRef}>
         {photos.map((photo, index) => (
-            <div key={`${photo.src}-${photo.date}`} className="post">
+            <div key={`${photo.src}-${photo.date}-${index}`} className="post">
               <Photo
                 src={photo.src}
                 alt={photo.alt}

@@ -1,10 +1,14 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
+import exifr from 'exifr';
 
 const Lightbox = ({ photos, currentIndex, onClose }) => {
   const [activeIndex, setActiveIndex] = useState(currentIndex);
   const [transitionClass, setTransitionClass] = useState('');
   const [preloadedImages, setPreloadedImages] = useState({});
+  const [metadataVisible, setMetadataVisible] = useState(false);
+  const [currentMetadata, setCurrentMetadata] = useState(null);
+  const [loadingMetadata, setLoadingMetadata] = useState(false);
   const lightboxRef = useRef(null);
 
   // Handle remote image URLs
@@ -14,6 +18,102 @@ const Lightbox = ({ photos, currentIndex, onClose }) => {
     }
     return src;
   };
+
+  // Extract EXIF data from image using exifr
+  const extractMetadata = useCallback(async (imageSrc) => {
+    setLoadingMetadata(true);
+    setCurrentMetadata(null);
+    
+    // Skip metadata extraction for external images
+    if (imageSrc.startsWith('http')) {
+      setCurrentMetadata({
+        error: '外部图片无法读取EXIF数据'
+      });
+      setLoadingMetadata(false);
+      return;
+    }
+
+    try {
+      // Read EXIF data using exifr
+      const exifData = await exifr.parse(imageSrc, {
+        tiff: true,
+        exif: true,
+        gps: true,
+        icc: false,
+        iptc: false,
+        xmp: false,
+        jfif: false,
+        ihdr: false
+      });
+
+      console.log('EXIF Data:', exifData);
+      
+      if (!exifData) {
+        setCurrentMetadata({
+          error: '此图片不包含EXIF数据'
+        });
+        setLoadingMetadata(false);
+        return;
+      }
+
+      // Format the metadata
+      const formattedData = {
+        camera: exifData.Make && exifData.Model ? 
+          `${exifData.Make} ${exifData.Model}` : '未知相机',
+        lens: exifData.LensModel || exifData.LensInfo || exifData.LensMake || '未知镜头',
+        aperture: exifData.FNumber ? `f/${exifData.FNumber}` : '未知',
+        shutterSpeed: exifData.ExposureTime ? 
+          (exifData.ExposureTime < 1 ? 
+            `1/${Math.round(1/exifData.ExposureTime)}s` : 
+            `${exifData.ExposureTime}s`) : '未知',
+        iso: exifData.ISO || exifData.ISOSpeedRatings || '未知',
+        focalLength: exifData.FocalLength ? `${exifData.FocalLength}mm` : '未知',
+        dateTime: (() => {
+          const date = exifData.DateTimeOriginal || exifData.DateTime || exifData.CreateDate;
+          if (!date) return '未知日期';
+          if (date instanceof Date) {
+            return date.toLocaleString('zh-CN', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit'
+            });
+          }
+          return String(date);
+        })(),
+        exposureMode: exifData.ExposureMode || '未知',
+        exposureBias: exifData.ExposureCompensation ? `${exifData.ExposureCompensation} EV` : '0 EV',
+        whiteBalance: exifData.WhiteBalance || '未知',
+        flash: exifData.Flash !== undefined ? 
+          (exifData.Flash === 0 ? '未闪光' : '已闪光') : '未知',
+        imageSize: exifData.ImageWidth && exifData.ImageHeight ? 
+          `${exifData.ImageWidth} × ${exifData.ImageHeight}` : '未知尺寸',
+        orientation: exifData.Orientation || '未知',
+        software: exifData.Software || '未知软件',
+        gpsLocation: exifData.latitude && exifData.longitude ? 
+          `${exifData.latitude.toFixed(6)}, ${exifData.longitude.toFixed(6)}` : '无位置信息'
+      };
+      
+      setCurrentMetadata(formattedData);
+      setLoadingMetadata(false);
+    } catch (error) {
+      console.error('Error reading EXIF data:', error);
+      setCurrentMetadata({
+        error: '无法读取图片EXIF数据'
+      });
+      setLoadingMetadata(false);
+    }
+  }, []);
+
+  // Load metadata when active image changes
+  useEffect(() => {
+    if (photos[activeIndex]) {
+      const imageSrc = getOptimizedImageUrl(photos[activeIndex].src);
+      extractMetadata(imageSrc);
+    }
+  }, [activeIndex, photos, extractMetadata]);
 
   // Preload adjacent images
   const preloadAdjacentImages = useCallback(() => {
@@ -47,6 +147,10 @@ const Lightbox = ({ photos, currentIndex, onClose }) => {
         case 'Escape':
           onClose();
           break;
+        case 'i':
+        case 'I':
+          setMetadataVisible(!metadataVisible);
+          break;
         default:
           break;
       }
@@ -54,7 +158,7 @@ const Lightbox = ({ photos, currentIndex, onClose }) => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeIndex, photos.length, onClose]);
+  }, [activeIndex, photos.length, onClose, metadataVisible]);
 
   // Preload adjacent images
   useEffect(() => {
@@ -101,6 +205,11 @@ const Lightbox = ({ photos, currentIndex, onClose }) => {
     }
   };
 
+  // Toggle metadata visibility
+  const toggleMetadata = () => {
+    setMetadataVisible(!metadataVisible);
+  };
+
   return (
     <div 
       className={`lightbox-overlay active`}
@@ -129,7 +238,90 @@ const Lightbox = ({ photos, currentIndex, onClose }) => {
         )}
       </div>
 
+      {/* Metadata Panel */}
+      <div className={`lightbox-metadata ${metadataVisible ? 'visible' : ''}`}>
+        <div className="metadata-header">
+          <h3>📷 图片信息</h3>
+          <button className="metadata-close" onClick={toggleMetadata}>×</button>
+        </div>
+        
+        <div className="metadata-content">
+          {loadingMetadata ? (
+            <div className="metadata-loading">
+              <div className="spinner-small"></div>
+              <span>读取EXIF数据...</span>
+            </div>
+          ) : currentMetadata?.error ? (
+            <div className="metadata-error">
+              <span>⚠️ {currentMetadata.error}</span>
+            </div>
+          ) : currentMetadata ? (
+            <div className="metadata-grid">
+              <div className="metadata-item">
+                <span className="metadata-label">📷 相机</span>
+                <span className="metadata-value">{currentMetadata.camera}</span>
+              </div>
+              <div className="metadata-item">
+                <span className="metadata-label">🔍 镜头</span>
+                <span className="metadata-value">{currentMetadata.lens}</span>
+              </div>
+              <div className="metadata-item">
+                <span className="metadata-label">🕳️ 光圈</span>
+                <span className="metadata-value">{currentMetadata.aperture}</span>
+              </div>
+              <div className="metadata-item">
+                <span className="metadata-label">⚡ 快门</span>
+                <span className="metadata-value">{currentMetadata.shutterSpeed}</span>
+              </div>
+              <div className="metadata-item">
+                <span className="metadata-label">🎞️ ISO</span>
+                <span className="metadata-value">{currentMetadata.iso}</span>
+              </div>
+              <div className="metadata-item">
+                <span className="metadata-label">📏 焦距</span>
+                <span className="metadata-value">{currentMetadata.focalLength}</span>
+              </div>
+              <div className="metadata-item">
+                <span className="metadata-label">💡 曝光补偿</span>
+                <span className="metadata-value">{currentMetadata.exposureBias}</span>
+              </div>
+              <div className="metadata-item">
+                <span className="metadata-label">📅 拍摄时间</span>
+                <span className="metadata-value">{currentMetadata.dateTime}</span>
+              </div>
+              <div className="metadata-item">
+                <span className="metadata-label">📐 尺寸</span>
+                <span className="metadata-value">{currentMetadata.imageSize}</span>
+              </div>
+              <div className="metadata-item">
+                <span className="metadata-label">🔆 闪光灯</span>
+                <span className="metadata-value">{currentMetadata.flash}</span>
+              </div>
+              <div className="metadata-item">
+                <span className="metadata-label">📍 GPS位置</span>
+                <span className="metadata-value">{currentMetadata.gpsLocation}</span>
+              </div>
+              <div className="metadata-item">
+                <span className="metadata-label">💻 软件</span>
+                <span className="metadata-value">{currentMetadata.software}</span>
+              </div>
+            </div>
+          ) : (
+            <div className="metadata-placeholder">
+              <span>点击 "i" 键或按钮查看图片信息</span>
+            </div>
+          )}
+        </div>
+      </div>
+
       <div className="lightbox-close" onClick={onClose}></div>
+      
+      {/* Info button */}
+      <button className="lightbox-info-btn" onClick={toggleMetadata} title="显示图片信息 (按 i 键)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+        </svg>
+      </button>
       
       <div className="lightbox-navigation">
         <button 
