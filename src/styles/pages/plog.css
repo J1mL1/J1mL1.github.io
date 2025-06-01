@@ -594,6 +594,177 @@ main {
   transform: translateY(0);
 }
 
+/* Metadata Panel 样式 */
+.lightbox-metadata {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 380px;
+  height: 100vh;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(30, 30, 30, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10001;
+  overflow-y: auto;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.lightbox-metadata.visible {
+  right: 0;
+}
+
+.metadata-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.metadata-header h3 {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.metadata-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 24px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.metadata-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.metadata-content {
+  padding: 20px;
+}
+
+.metadata-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.metadata-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.metadata-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.metadata-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metadata-value {
+  font-size: 1rem;
+  color: white;
+  font-weight: 600;
+  word-break: break-word;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.metadata-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 40px 20px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.spinner-small {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.metadata-error {
+  padding: 20px;
+  text-align: center;
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+}
+
+.metadata-placeholder {
+  padding: 40px 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+/* Info button 样式 */
+.lightbox-info-btn {
+  position: absolute;
+  top: 20px;
+  right: 80px;
+  width: 44px;
+  height: 44px;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 10;
+}
+
+.lightbox-info-btn:hover {
+  background: rgba(var(--accent), 0.8);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(var(--accent), 0.3);
+}
+
+.lightbox-info-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
 .lightbox-close {
   position: absolute;
   top: 20px;
@@ -666,7 +837,7 @@ main {
   pointer-events: none;
 }
 
-/* 为移动设备优化灯箱 */
+/* 为移动设备优化灯箱和metadata */
 @media (max-width: 768px) {
   .lightbox-img {
     max-height: 75vh;
@@ -681,6 +852,30 @@ main {
   .lightbox-close {
     top: 10px;
     right: 10px;
+  }
+  
+  .lightbox-info-btn {
+    top: 10px;
+    right: 60px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .lightbox-metadata {
+    width: 100%;
+    right: -100%;
+  }
+  
+  .metadata-header {
+    padding: 16px;
+  }
+  
+  .metadata-content {
+    padding: 16px;
+  }
+  
+  .metadata-item {
+    padding: 12px;
   }
 }
 
