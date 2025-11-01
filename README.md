@@ -1,30 +1,44 @@
-# Personal Photo Blog
+# Personal Portfolio Website
 
-A modern, responsive photo blog built with React, featuring masonry layout and lazy loading for optimal performance.
+A modern, responsive personal portfolio website built with Astro, React, and Tailwind CSS, featuring a beautiful neumorphism (soft UI) design style.
 
 ## 🌟 Features
 
-- Masonry grid layout for beautiful photo arrangements
-- Lazy loading images for better performance
-- WebP image support with fallback
-- Photo grouping and filtering
-- Responsive design
-- Modern image optimization
+- **Neumorphism Design**: Beautiful soft UI with dual shadows and 3D effects
+- **Dark Mode Support**: Full dark mode with inverted neumorphic shadows
+- **Masonry grid layout** for beautiful photo arrangements
+- **Lazy loading images** for better performance
+- **Photo grouping and filtering**
+- **Responsive design** that works on all devices
+- **Accessibility**: WCAG-compliant contrast ratios
+- **Project showcase** with markdown content
+- **Blog functionality** for technical articles
 
 ## 🛠 Tech Stack
 
-- React
-- Masonry Layout
-- Vanilla-LazyLoad
-- ImagesLoaded
-- Nano Stores for state management
+- **Astro** - Static site framework
+- **React** - Interactive components
+- **Tailwind CSS** - Utility-first CSS framework
+- **tailwindcss-neumorphism** - Neumorphic design utilities
+- **Masonry Layout** - Photo grid layouts
+- **Vanilla-LazyLoad** - Image lazy loading
+- **Nano Stores** - State management
+
+## 🎨 Design System
+
+The site uses a cohesive neumorphism design system with:
+
+- Base background color: `#e0e0e0` (light mode) / `#2e2e2e` (dark mode)
+- Light shadow: `#ffffff` (light) / `#3a3a3a` (dark)
+- Dark shadow: `#c0c0c0` (light) / `#1a1a1a` (dark)
+- Reusable neumorphic components: `NeumorphicCard`, `NeumorphicButton`, `NeumorphicInput`
 
 ## 🚀 Getting Started
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/MyBlog.git
-cd MyBlog
+git clone https://github.com/J1mL1/J1mL1.github.io.git
+cd J1mL1.github.io
 ```
 
 2. Install dependencies:
@@ -36,6 +50,30 @@ npm install
 ```bash
 npm run dev
 ```
+
+## 📦 New Dependencies
+
+The following package was added for neumorphism support:
+- `tailwindcss-neumorphism` - Tailwind plugin for neumorphic design utilities
+
+## 🎯 Key Changes (Neumorphism Redesign)
+
+### Components Added
+- `NeumorphicCard.astro` - Reusable card component with neumorphic styling
+- `NeumorphicButton.astro` - Button component with pressed state effects
+- `NeumorphicInput.astro` - Input field with inset shadow effects
+
+### Styling Updates
+- Updated `tailwind.config.cjs` with neumorphism plugin and custom colors
+- Added `neumorphism.css` for custom shadow utilities
+- Updated global variables in `variables.css` for neumorphic colors
+- Modified navigation and theme toggle to match neumorphic style
+- Enhanced dark mode support with inverted shadow colors
+
+### Page Updates
+- All pages now use `NeumorphicCard` components for consistent styling
+- Improved hover and active states with smooth transitions
+- Enhanced accessibility with proper contrast ratios
 
 ## 📸 Adding Photos
 

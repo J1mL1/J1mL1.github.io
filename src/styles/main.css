@@ -10,6 +10,7 @@
 @import './components/navigation.css';
 @import './components/theme-toggle.css';
 @import './components/colorbar.css';
+@import './components/neumorphism.css';
 
 /* Page-specific styles */
 @import './pages/index.css';

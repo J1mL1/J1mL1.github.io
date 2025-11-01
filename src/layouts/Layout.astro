@@ -66,11 +66,13 @@ const { title } = Astro.props;
 		</script>
 	</head>
 
-	<body class="min-h-screen">
-		<div class="">
+	<body class="min-h-screen bg-neu-base">
+		<div class="min-h-screen">
 			<Nav />
-			<main class="flex-3 mt-16"> 
-				<slot />
+			<main class="flex-3 mt-16 px-4 py-8"> 
+				<div class="max-w-6xl mx-auto">
+					<slot />
+				</div>
 			</main>
 			<Footer />
 		</div>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import NeumorphicCard from '../components/NeumorphicCard.astro';
 import '../styles/main.css';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
@@ -13,21 +14,23 @@ projectsData.sort((a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'
 
 <Layout title={pageTitle}>
     <div class="container">
-        <h1 class="page-title">My <span class="text-gradient">Project</span> Collection</h1>
-        <p class="description">
-            Here are some of my recent projects. Click to view details.
-        </p>
+        <NeumorphicCard class="mb-8 text-center">
+            <h1 class="text-4xl font-bold mb-4">My <span class="text-gradient">Project</span> Collection</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300">
+                Here are some of my recent projects. Click to view details.
+            </p>
+        </NeumorphicCard>
 
         <div class="projects-list">
             {projectsData.map((project: CollectionEntry<'projects'>) => (
-                <div class="project-card">
-                    <a href={`/projects/${project.data.id}`} class="project-link">
+                <NeumorphicCard class="project-card hover:shadow-neu-lg transition-all duration-300">
+                    <a href={`/projects/${project.data.id}`} class="project-link block">
                         <div class="project-content">
                             <div class="project-image-container">
                                 <img 
                                     src={project.data.thumbnail} 
                                     alt={project.data.title} 
-                                    class="project-image"
+                                    class="project-image rounded-lg"
                                     loading="lazy"
                                     decoding="async"
                                     onload="this.classList.add('loaded')"
@@ -51,7 +54,7 @@ projectsData.sort((a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'
                             </div>
                         </div>
                     </a>
-                </div>
+                </NeumorphicCard>
             ))}
         </div>
     </div>

@@ -1,0 +1,26 @@
+---
+export interface Props {
+	class?: string;
+	elevated?: boolean;
+	pressed?: boolean;
+}
+
+const { class: className = '', elevated = true, pressed = false } = Astro.props;
+
+const shadowClass = pressed 
+	? 'shadow-neu-inset-md'
+	: elevated
+	? 'shadow-neu-md'
+	: 'shadow-neu-sm';
+---
+
+<div class={`bg-neu-base rounded-xl p-6 transition-all duration-300 ${shadowClass} ${className}`}>
+	<slot />
+</div>
+
+<style>
+	:global(.bg-neu-base) {
+		background-color: var(--neu-base);
+	}
+</style>
+
