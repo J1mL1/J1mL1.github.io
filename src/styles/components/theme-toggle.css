@@ -24,7 +24,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: var(--neu-base);
+  box-shadow: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light);
+  transition: all 0.3s ease;
 }
 
 .slider:before {
@@ -34,7 +36,9 @@
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: var(--neu-base);
+  box-shadow: 3px 3px 6px var(--neu-dark), -3px -3px 6px var(--neu-light);
+  transition: all 0.3s ease;
 }
 
 input:checked + .slider {

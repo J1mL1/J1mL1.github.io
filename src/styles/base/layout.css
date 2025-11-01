@@ -3,9 +3,10 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: var(--bg-color);
+    background-color: var(--neu-base);
     color: var(--text-color);
     transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 html {

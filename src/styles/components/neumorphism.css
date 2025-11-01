@@ -1,0 +1,76 @@
+/* Custom Neumorphism Utilities */
+
+/* Light mode shadows */
+.shadow-neu-sm {
+  box-shadow: 
+    8px 8px 16px var(--neu-dark),
+    -8px -8px 16px var(--neu-light);
+}
+
+.shadow-neu-md {
+  box-shadow: 
+    12px 12px 24px var(--neu-dark),
+    -12px -12px 24px var(--neu-light);
+}
+
+.shadow-neu-lg {
+  box-shadow: 
+    16px 16px 32px var(--neu-dark),
+    -16px -16px 32px var(--neu-light);
+}
+
+.shadow-neu-inset-sm {
+  box-shadow: 
+    inset 4px 4px 8px var(--neu-dark),
+    inset -4px -4px 8px var(--neu-light);
+}
+
+.shadow-neu-inset-md {
+  box-shadow: 
+    inset 8px 8px 16px var(--neu-dark),
+    inset -8px -8px 16px var(--neu-light);
+}
+
+.shadow-neu-inset-lg {
+  box-shadow: 
+    inset 12px 12px 24px var(--neu-dark),
+    inset -12px -12px 24px var(--neu-light);
+}
+
+/* Dark mode shadows - inverted colors */
+.dark .shadow-neu-sm {
+  box-shadow: 
+    8px 8px 16px var(--neu-dark),
+    -8px -8px 16px var(--neu-light);
+}
+
+.dark .shadow-neu-md {
+  box-shadow: 
+    12px 12px 24px var(--neu-dark),
+    -12px -12px 24px var(--neu-light);
+}
+
+.dark .shadow-neu-lg {
+  box-shadow: 
+    16px 16px 32px var(--neu-dark),
+    -16px -16px 32px var(--neu-light);
+}
+
+.dark .shadow-neu-inset-sm {
+  box-shadow: 
+    inset 4px 4px 8px var(--neu-dark),
+    inset -4px -4px 8px var(--neu-light);
+}
+
+.dark .shadow-neu-inset-md {
+  box-shadow: 
+    inset 8px 8px 16px var(--neu-dark),
+    inset -8px -8px 16px var(--neu-light);
+}
+
+.dark .shadow-neu-inset-lg {
+  box-shadow: 
+    inset 12px 12px 24px var(--neu-dark),
+    inset -12px -12px 24px var(--neu-light);
+}
+

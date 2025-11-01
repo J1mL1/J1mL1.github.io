@@ -3,14 +3,24 @@
     --accent-gradient-light: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
     --accent-gradient-dark: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, #2a2a2a 60%);
     --accent-gradient: var(--accent-gradient-light);
-    --bg-color: #F6F6F6;
+    
+    /* Neumorphism colors - Light mode */
+    --bg-color: #e0e0e0;
+    --neu-base: #e0e0e0;
+    --neu-light: #ffffff;
+    --neu-dark: #c0c0c0;
     --text-color: #1a1a1a;
-    --card-bg: white;
+    --card-bg: #e0e0e0;
 }
 
 :root.dark {
-    --bg-color: #1a1a1a;
+    --bg-color: #2e2e2e;
     --text-color: #F6F6F6;
-    --card-bg: #2a2a2a;
+    --card-bg: #2e2e2e;
     --accent-gradient: var(--accent-gradient-dark);
+    
+    /* Neumorphism colors - Dark mode */
+    --neu-base: #2e2e2e;
+    --neu-light: #3a3a3a;
+    --neu-dark: #1a1a1a;
 } 

@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import NeumorphicCard from '../components/NeumorphicCard.astro';
 import '../styles/main.css';
 
 const pageTitle = "Jim's Personal Space"
@@ -8,45 +8,56 @@ const pageTitle = "Jim's Personal Space"
 
 <Layout title={pageTitle}>
     <div class="container">
-        <h1 class="page-title">Welcome to <span class="text-gradient">Jim's Corner</span></h1>
-        <p class="card-container">
-            Hello! I'm <strong>Jim</strong>, a computer science student passionate about programming and photography. This is where I document my projects, life insights, and photographic works 📝
-        </p>
+        <NeumorphicCard class="mb-8">
+            <h1 class="text-4xl font-bold mb-4 text-center">Welcome to <span class="text-gradient">Jim's Corner</span></h1>
+            <p class="text-center text-lg">
+                Hello! I'm <strong>Jim</strong>, a computer science student passionate about programming and photography. This is where I document my projects, life insights, and photographic works 📝
+            </p>
+        </NeumorphicCard>
 
-        <ul role="list" class="content-grid">
-            <Card
-                href="/blog"
-                title="Tech Blog"
-                body="Sharing programming experience, study notes and technical insights"
-            />
-            <Card
-                href="/plog"
-                title="Photography Journal"
-                body="Capturing life moments, sharing photography collections 📸"
-            />
-            <Card
-                href="/projects"
-                title="Project Showcase"
-                body="Documenting interesting projects I've participated in"
-            />
-            <Card
-                href="/about"
-                title="About Me"
-                body="Learn more about my story and experiences"
-            />
-            <Card
-                href="/contact"
-                title="Contact Me"
-                body="Feel free to reach out with any questions or ideas 👋"
-            />
-        </ul>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <NeumorphicCard class="hover:shadow-neu-lg transition-all duration-300">
+                <a href="/blog" class="block">
+                    <h2 class="text-2xl font-semibold mb-3">Tech Blog <span class="text-gray-500">→</span></h2>
+                    <p class="text-gray-600 dark:text-gray-300">Sharing programming experience, study notes and technical insights</p>
+                </a>
+            </NeumorphicCard>
+
+            <NeumorphicCard class="hover:shadow-neu-lg dark:hover:shadow-neu-dark-lg transition-all duration-300">
+                <a href="/plog" class="block">
+                    <h2 class="text-2xl font-semibold mb-3">Photography Journal <span class="text-gray-500">→</span></h2>
+                    <p class="text-gray-600 dark:text-gray-300">Capturing life moments, sharing photography collections 📸</p>
+                </a>
+            </NeumorphicCard>
+
+            <NeumorphicCard class="hover:shadow-neu-lg dark:hover:shadow-neu-dark-lg transition-all duration-300">
+                <a href="/projects" class="block">
+                    <h2 class="text-2xl font-semibold mb-3">Project Showcase <span class="text-gray-500">→</span></h2>
+                    <p class="text-gray-600 dark:text-gray-300">Documenting interesting projects I've participated in</p>
+                </a>
+            </NeumorphicCard>
+
+            <NeumorphicCard class="hover:shadow-neu-lg dark:hover:shadow-neu-dark-lg transition-all duration-300">
+                <a href="/about" class="block">
+                    <h2 class="text-2xl font-semibold mb-3">About Me <span class="text-gray-500">→</span></h2>
+                    <p class="text-gray-600 dark:text-gray-300">Learn more about my story and experiences</p>
+                </a>
+            </NeumorphicCard>
+
+            <NeumorphicCard class="hover:shadow-neu-lg dark:hover:shadow-neu-dark-lg transition-all duration-300">
+                <a href="/contact" class="block">
+                    <h2 class="text-2xl font-semibold mb-3">Contact Me <span class="text-gray-500">→</span></h2>
+                    <p class="text-gray-600 dark:text-gray-300">Feel free to reach out with any questions or ideas 👋</p>
+                </a>
+            </NeumorphicCard>
+        </div>
     </div>
 </Layout>
 
 <style>
     .container {
         margin: 0 auto;
-        padding: 2rem;
+        padding: 1rem;
         max-width: 1200px;
     }
 </style>
