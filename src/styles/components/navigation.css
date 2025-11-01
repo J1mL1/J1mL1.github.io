@@ -9,15 +9,14 @@
   position: fixed;
   top: 0;
   z-index: 100;
-  background-color: var(--bg-color);
-  border-bottom: 1px solid rgba(var(--accent), 0.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: var(--neu-base);
+  box-shadow: 0 4px 12px var(--neu-dark), 0 -2px 6px var(--neu-light);
   transition: all 0.3s ease;
 }
 
 .dark .site-header {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border-bottom: 1px solid rgba(var(--accent), 0.15);
+  background-color: var(--neu-base);
+  box-shadow: 0 4px 12px var(--neu-dark), 0 -2px 6px var(--neu-light);
 }
 
 nav {
@@ -44,32 +43,19 @@ nav {
   border-radius: 50%;
   position: relative;
   color: var(--text-color);
+  background-color: var(--neu-base);
   transition: all 0.2s ease;
   opacity: 0.85;
-}
-
-.nav-link::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.nav-link:hover::before {
-  border-color: rgb(var(--accent));
-  transform: rotate(360deg);
-}
-
-.nav-link.active {
-  background-color: rgba(var(--accent), 0.08);
-  opacity: 1;
+  box-shadow: 4px 4px 8px var(--neu-dark), -4px -4px 8px var(--neu-light);
 }
 
 .nav-link:hover {
-  background-color: rgba(var(--accent), 0.08);
+  box-shadow: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light);
+  opacity: 1;
+}
+
+.nav-link.active {
+  box-shadow: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light);
   opacity: 1;
 }
 

@@ -1,0 +1,33 @@
+---
+export interface Props {
+	class?: string;
+	type?: 'button' | 'submit' | 'reset';
+	href?: string;
+	onClick?: () => void;
+}
+
+const { class: className = '', type = 'button', href, onClick } = Astro.props;
+
+const baseClasses = `bg-neu-base rounded-xl px-6 py-3 transition-all duration-200 shadow-neu-md hover:shadow-neu-lg active:shadow-neu-inset-md cursor-pointer inline-block text-center font-medium ${className}`;
+---
+
+{href ? (
+	<a href={href} class={baseClasses}>
+		<slot />
+	</a>
+) : (
+	<button type={type} class={baseClasses} onClick={onClick}>
+		<slot />
+	</button>
+)}
+
+<style>
+	:global(.bg-neu-base) {
+		background-color: var(--neu-base);
+	}
+	
+	:global(button:active, a:active) {
+		transform: scale(0.98);
+	}
+</style>
+
