@@ -1,4 +1,6 @@
 :root {
+    --font-sans: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-heading: 'Nunito', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     --accent: 124, 58, 237;
     --accent-gradient-light: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
     --accent-gradient-dark: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, #2a2a2a 60%);
@@ -10,7 +12,10 @@
     --neu-light: #ffffff;
     --neu-dark: #c0c0c0;
     --text-color: #1a1a1a;
-    --card-bg: #e0e0e0;
+    --heading-color: #121212;
+    --subheading-color: #4f4f4f;
+    --body-color: #1a1a1a;
+    --card-bg: white;
 }
 
 :root.dark {
@@ -23,4 +28,7 @@
     --neu-base: #2e2e2e;
     --neu-light: #3a3a3a;
     --neu-dark: #1a1a1a;
-} 
+    --heading-color: #f7f7f7;
+    --subheading-color: #cdcdcd;
+    --body-color: #e8e8e8;
+}
