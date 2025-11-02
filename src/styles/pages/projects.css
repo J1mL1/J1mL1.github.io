@@ -3,7 +3,12 @@
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  position: relative;
+  /* Large neumorphic grid size responsive */
+  --grid-size: clamp(100px, 16vw, 160px);
 }
+
+/* (removed) page grid background */
 
 .projects-hero {
   padding: 2.5rem 2rem;
@@ -185,6 +190,14 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  position: relative;
+}
+
+/* Full-page card wrapper for detail page */
+.project-detail-card {
+  display: block;
+  border-radius: 1.5rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
 }
 
 .project-header {

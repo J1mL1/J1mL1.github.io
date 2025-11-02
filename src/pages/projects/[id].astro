@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import NeumorphicCard from '../../components/NeumorphicCard.astro';
 import '../../styles/main.css';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
@@ -20,6 +21,7 @@ const { Content } = await entry.render();
 ---
 
 <Layout title={entry.data.title}>
+  <NeumorphicCard class="project-detail-card">
   <div class="project-detail-container">
     <div class="project-header">
             <a href="/projects" class="back-link">        &larr; Back to Projects      </a>
@@ -53,6 +55,7 @@ const { Content } = await entry.render();
       <Content />
     </article>
   </div>
+  </NeumorphicCard>
 </Layout>
 
 <script>

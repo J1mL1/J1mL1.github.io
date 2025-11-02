@@ -17,6 +17,9 @@ main {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  /* Full-bleed inside content-shell */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
 }
 
 /* Sidebar container styles - 重新设计 */
@@ -51,7 +54,9 @@ main {
 .photo-stream-container {
   flex: 1;
   padding: 20px;
-  margin-left: 280px; /* Adjust margin for sidebar width */
+  /* Leave a gap between sidebar and stream */
+  margin-left: calc(var(--sidebar-width, 280px) + var(--sidebar-gap, 24px));
+  max-width: none; /* remove inherited constraints */
 }
 
 /* 重新设计的侧边栏样式 */
@@ -98,10 +103,10 @@ main {
   width: 100%;
   text-decoration: none;
   padding: 10px 16px;
-  color: var(--text-color);
+  color: var(--body-color);
   font-size: 0.95rem;
-  font-weight: 400;
-  transition: all 0.2s ease;
+  font-weight: 500;
+  transition: color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   border-radius: 6px;
   opacity: 0.85;
   position: relative;
@@ -115,35 +120,18 @@ main {
 }
 
 /* 悬停效果 */
-.sidebar-link:hover,
-.sidebar-link.active {
-  opacity: 1;
-}
+.sidebar-link:hover { opacity: 1; }
 
-.sidebar-link::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 0;
-  background: linear-gradient(to right, rgba(var(--accent), 0.1), transparent);
-  transition: width 0.3s ease;
-  z-index: 0;
-}
+/* Remove sweeping gradient effect */
+.sidebar-link::before { display: none; }
 
-.sidebar-link:hover::before {
-  width: 100%;
-}
-
-.sidebar-link:hover p {
-  transform: translateX(4px);
-  color: rgb(var(--accent));
-}
+.sidebar-link:hover p { transform: none; color: rgb(var(--accent)); }
 
 /* 激活状态 */
 .sidebar-link.active {
-  background-color: rgba(var(--accent), 0.08);
+  box-shadow:
+    inset 4px 4px 8px var(--neu-shadow-inset-dark),
+    inset -4px -4px 8px var(--neu-shadow-inset-light);
 }
 
 .sidebar-link.active p {
@@ -169,9 +157,9 @@ main {
   align-items: center;
   width: 100%;
   padding: 10px 16px;
-  color: var(--text-color);
+  color: var(--body-color);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   border-radius: 6px;
   font-size: 0.95rem;
   font-weight: 500;
@@ -185,26 +173,10 @@ main {
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.location-toggle::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 0;
-  background: linear-gradient(to right, rgba(var(--accent), 0.1), transparent);
-  transition: width 0.3s ease;
-  z-index: 0;
-}
+/* Remove sweeping gradient effect */
+.location-toggle::before { display: none; }
 
-.location-toggle:hover::before {
-  width: 100%;
-}
-
-.location-toggle:hover span {
-  transform: translateX(4px);
-  color: rgb(var(--accent));
-}
+.location-toggle:hover span { transform: none; color: rgb(var(--accent)); }
 
 .location-toggle::after {
   content: '';
@@ -232,10 +204,8 @@ main {
 /* 嵌套列表 */
 .nested-list {
   width: 100%;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-  opacity: 0;
+  display: none; /* remove expand animations */
+  opacity: 1;
   padding-left: 20px;
   margin-left: 10px;
   border-left: 1px dashed rgba(var(--accent), 0.2);
@@ -245,34 +215,15 @@ main {
   margin: 2px 0;
 }
 
-.sidebar-item.expanded > .nested-list {
-  max-height: 500px;
-  opacity: 1;
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
+.sidebar-item.expanded > .nested-list { display: block; padding-top: 4px; padding-bottom: 4px; }
 
 /* 嵌套项目的淡入效果 */
-.nested-list .sidebar-item {
-  opacity: 0;
-  transform: translateX(-8px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.sidebar-item.expanded > .nested-list .sidebar-item {
-  opacity: 1;
-  transform: translateX(0);
-}
+/* Remove staggered fade/slide animations */
+.nested-list .sidebar-item { opacity: 1; transform: none; transition: none; }
 
 /* 为每个子项添加递增延迟 */
-.nested-list .sidebar-item:nth-child(1) { transition-delay: 0.05s; }
-.nested-list .sidebar-item:nth-child(2) { transition-delay: 0.1s; }
-.nested-list .sidebar-item:nth-child(3) { transition-delay: 0.15s; }
-.nested-list .sidebar-item:nth-child(4) { transition-delay: 0.2s; }
-.nested-list .sidebar-item:nth-child(5) { transition-delay: 0.25s; }
-.nested-list .sidebar-item:nth-child(6) { transition-delay: 0.3s; }
-.nested-list .sidebar-item:nth-child(7) { transition-delay: 0.35s; }
-.nested-list .sidebar-item:nth-child(8) { transition-delay: 0.4s; }
+/* no stagger */
+.nested-list .sidebar-item:nth-child(n) { transition-delay: 0s; }
 
 /* 暗色模式适配 */
 .dark .photo-sidebar-container {
@@ -290,10 +241,45 @@ main {
   border-left-color: rgba(var(--accent), 0.3);
 }
 
+/* No gradient sweep in dark mode either */
 .dark .sidebar-link::before,
-.dark .location-toggle::before {
-  background: linear-gradient(to right, rgba(var(--accent), 0.15), transparent);
+.dark .location-toggle::before { display: none; }
+
+/* ===== Sidebar reset: remove visual effects for a flat look ===== */
+.photo-sidebar-container {
+  background: var(--bg-color) !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
 }
+
+.sidebar-section {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+.sidebar-link,
+.location-toggle {
+  background: transparent !important;
+  box-shadow: none !important;
+  transition: none !important;
+  color: var(--body-color);
+}
+
+.sidebar-link:hover,
+.location-toggle:hover {
+  color: var(--body-color);
+}
+
+.sidebar-link.active,
+.location-toggle.expanded {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.sidebar-link::before,
+.location-toggle::before { display: none !important; }
 
 .dark .sidebar-link.active,
 .dark .location-toggle.expanded {
@@ -302,16 +288,26 @@ main {
 
 /* Masonry grid styles from photo-stream.css */
 .masonry-grid {
-  display: grid;
+  display: block; /* Masonry positions absolutely; block avoids extra tracks */
   width: 100%;
-  margin-left: 0; /* Remove left margin */
+  margin-left: 0;
   position: relative;
 }
 
+/* Masonry sizing helpers */
+:root {
+  --masonry-gutter: 16px;
+  --sidebar-width: 280px;
+  --sidebar-gap: 24px;
+}
+
+.grid-sizer { width: calc((100% - 2 * var(--masonry-gutter)) / 3); }
+.gutter-sizer { width: var(--masonry-gutter); }
+
 .post {
-  margin-left: 0.5rem;
-  margin-bottom: 1rem;
-  width: calc(33.333% - 1rem); /* Adjust width for three columns with spacing */
+  margin-left: 0; /* Masonry will handle gutters */
+  margin-bottom: var(--masonry-gutter);
+  width: calc((100% - 2 * var(--masonry-gutter)) / 3);
   opacity: 0;
   animation: fadeIn 0.5s ease-in-out forwards;
 }
@@ -429,26 +425,30 @@ main {
 
 @media (min-width: 2560px) {
   .post {
-    width: calc(20% - 1rem); /* 5 columns for extra-large screens */
+    width: calc((100% - 4 * var(--masonry-gutter)) / 5); /* 5 columns */
   }
+  .grid-sizer { width: calc((100% - 4 * var(--masonry-gutter)) / 5); }
 }
 
 @media (max-width: 2250px) {
   .post {
-    width: calc(25% - 1rem); /* 4 columns for large screens */
+    width: calc((100% - 3 * var(--masonry-gutter)) / 4); /* 4 columns */
   }
+  .grid-sizer { width: calc((100% - 3 * var(--masonry-gutter)) / 4); }
 }
 
 @media (max-width: 1800px) {
   .post {
-    width: calc(33.333% - 1rem); /* 3 columns for medium screens */
+    width: calc((100% - 2 * var(--masonry-gutter)) / 3); /* 3 columns */
   }
+  .grid-sizer { width: calc((100% - 2 * var(--masonry-gutter)) / 3); }
 }
 
 @media (max-width: 1400px) {
   .post {
-    width: calc(50% - 1rem); /* 2 columns for small screens */
+    width: calc((100% - 1 * var(--masonry-gutter)) / 2); /* 2 columns */
   }
+  .grid-sizer { width: calc((100% - 1 * var(--masonry-gutter)) / 2); }
 }
 
 @media (max-width: 1050px) {
@@ -456,6 +456,33 @@ main {
     width: 100%; /* Single column for extra-small screens */
     aspect-ratio: 16/9; /* Maintain aspect ratio */
   }
+  .grid-sizer { width: 100%; }
+}
+
+/* Override with more practical breakpoints for common screens */
+@media (min-width: 1920px) {
+  .post { width: calc((100% - 4 * var(--masonry-gutter)) / 5); }
+  .grid-sizer { width: calc((100% - 4 * var(--masonry-gutter)) / 5); }
+}
+
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .post { width: calc((100% - 3 * var(--masonry-gutter)) / 4); }
+  .grid-sizer { width: calc((100% - 3 * var(--masonry-gutter)) / 4); }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .post { width: calc((100% - 2 * var(--masonry-gutter)) / 3); }
+  .grid-sizer { width: calc((100% - 2 * var(--masonry-gutter)) / 3); }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .post { width: calc((100% - 1 * var(--masonry-gutter)) / 2); }
+  .grid-sizer { width: calc((100% - 1 * var(--masonry-gutter)) / 2); }
+}
+
+@media (max-width: 767px) {
+  .post { width: 100%; }
+  .grid-sizer { width: 100%; }
 }
 
 /* Responsive Design */
@@ -920,3 +947,108 @@ main {
   opacity: 0.85;
   mix-blend-mode: screen; /* 黑暗模式下使用不同的混合模式 */
 }
+
+/* Neumorphism overrides for plog */
+.photo-sidebar-container {
+  background: var(--neu-base);
+  border-radius: 1rem 1rem 0 0;
+  box-shadow:
+    12px 12px 24px var(--neu-shadow-outer-dark),
+    -12px -12px 24px var(--neu-shadow-outer-light);
+}
+
+.sidebar-link,
+.location-toggle {
+  background: var(--neu-base);
+  color: var(--body-color);
+  box-shadow:
+    8px 8px 16px var(--neu-shadow-outer-dark),
+    -8px -8px 16px var(--neu-shadow-outer-light);
+}
+
+.sidebar-link.active,
+.location-toggle.expanded {
+  box-shadow:
+    inset 4px 4px 8px var(--neu-shadow-inset-dark),
+    inset -4px -4px 8px var(--neu-shadow-inset-light);
+}
+
+.photo-wrapper {
+  background: var(--neu-base);
+  border-radius: 1rem;
+  box-shadow:
+    12px 12px 24px var(--neu-shadow-outer-dark),
+    -12px -12px 24px var(--neu-shadow-outer-light);
+}
+
+.photo-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    16px 16px 32px var(--neu-shadow-outer-dark),
+    -16px -16px 32px var(--neu-shadow-outer-light);
+}
+/* Dark mode ensure overrides */
+.dark .photo-sidebar-container {
+  background: var(--neu-base);
+  box-shadow:
+    12px 12px 24px var(--neu-shadow-outer-dark),
+    -12px -12px 24px var(--neu-shadow-outer-light);
+}
+/* Neumorphism for plog sidebar + items */
+.photo-sidebar-container {
+  background: var(--neu-base);
+  border-radius: 1rem 1rem 0 0;
+  box-shadow:
+    12px 12px 24px var(--neu-shadow-outer-dark),
+    -12px -12px 24px var(--neu-shadow-outer-light);
+}
+
+/* Section blocks as small cards */
+.sidebar-section {
+  background: var(--neu-base);
+  border-radius: 1rem;
+  padding: 0.5rem 0.25rem;
+  box-shadow:
+    8px 8px 16px var(--neu-shadow-outer-dark),
+    -8px -8px 16px var(--neu-shadow-outer-light);
+  margin-bottom: 1rem;
+}
+
+.sidebar-list { padding: 0.25rem 0.25rem; }
+
+.sidebar-link,
+.location-toggle {
+  background: var(--neu-base);
+  color: var(--body-color);
+  box-shadow:
+    8px 8px 16px var(--neu-shadow-outer-dark),
+    -8px -8px 16px var(--neu-shadow-outer-light);
+}
+
+.sidebar-link.active,
+.location-toggle.expanded {
+  box-shadow:
+    inset 4px 4px 8px var(--neu-shadow-inset-dark),
+    inset -4px -4px 8px var(--neu-shadow-inset-light);
+}
+
+/* Photo card */
+.photo-wrapper {
+  background: var(--neu-base);
+  border-radius: 1rem;
+  box-shadow:
+    12px 12px 24px var(--neu-shadow-outer-dark),
+    -12px -12px 24px var(--neu-shadow-outer-light);
+}
+
+.photo-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    16px 16px 32px var(--neu-shadow-outer-dark),
+    -16px -16px 32px var(--neu-shadow-outer-light);
+}
+
+/* Dark mode ensure */
+.dark .photo-sidebar-container,
+.dark .sidebar-section,
+.dark .photo-wrapper { background: var(--neu-base); }
