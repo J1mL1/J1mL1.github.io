@@ -8,6 +8,7 @@
     
     /* Neumorphism colors - Light mode */
     --bg-color: #e0e0e0;
+    --bg-color-rgb: 224, 224, 224;
     --neu-base: #e0e0e0;
     --neu-light: #ffffff;
     --neu-dark: #c0c0c0;
@@ -16,16 +17,22 @@
     --subheading-color: #4f4f4f;
     --body-color: #1a1a1a;
     --card-bg: white;
-    
+    --overlay: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+
     /* Neumorphism shadow colors (light mode) */
     --neu-shadow-outer-dark: rgba(0, 0, 0, 0.12);
     --neu-shadow-outer-light: rgba(255, 255, 255, 0.65);
     --neu-shadow-inset-dark: rgba(0, 0, 0, 0.08);
     --neu-shadow-inset-light: rgba(255, 255, 255, 0.45);
+
+    /* Grid background line colors (light mode) */
+    --grid-line-dark: rgba(0, 0, 0, 0.08);
+    --grid-line-light: rgba(255, 255, 255, 0.20);
 }
 
 :root.dark {
     --bg-color: #2e2e2e;
+    --bg-color-rgb: 46, 46, 46;
     --text-color: #F6F6F6;
     --card-bg: #2e2e2e;
     --accent-gradient: var(--accent-gradient-dark);
@@ -37,10 +44,15 @@
     --heading-color: #f7f7f7;
     --subheading-color: #cdcdcd;
     --body-color: #e8e8e8;
-    
+    --overlay: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+
     /* Neumorphism shadow colors (dark mode) */
     --neu-shadow-outer-dark: rgba(0, 0, 0, 0.35);
     --neu-shadow-outer-light: rgba(255, 255, 255, 0.08);
     --neu-shadow-inset-dark: rgba(0, 0, 0, 0.18);
     --neu-shadow-inset-light: rgba(255, 255, 255, 0.10);
+
+    /* Grid background line colors (dark mode) */
+    --grid-line-dark: rgba(0, 0, 0, 0.28);
+    --grid-line-light: rgba(255, 255, 255, 0.08);
 }

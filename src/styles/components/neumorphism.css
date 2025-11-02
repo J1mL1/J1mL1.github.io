@@ -74,3 +74,16 @@
     inset -12px -12px 24px var(--neu-shadow-inset-light);
 }
 
+/* Hover utilities to align interactive effects across site */
+.neu-hover-inset-sm:hover {
+  box-shadow:
+    inset 3px 3px 6px var(--neu-shadow-inset-dark),
+    inset -3px -3px 6px var(--neu-shadow-inset-light);
+}
+
+.neu-hover-inset-md:hover {
+  box-shadow:
+    inset 6px 6px 12px var(--neu-shadow-inset-dark),
+    inset -6px -6px 12px var(--neu-shadow-inset-light);
+}
+
