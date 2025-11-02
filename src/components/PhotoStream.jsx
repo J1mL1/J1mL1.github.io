@@ -27,6 +27,7 @@ const PhotoStream = () => {
   const gridRef = useRef(null);
   const resizeObserverRef = useRef(null);
   const initTimeoutRef = useRef(null);
+  const layoutRafRef = useRef(0);
 
   // Handle photo group changes
   useEffect(() => {
@@ -58,6 +59,13 @@ const PhotoStream = () => {
   }, [photos]);
 
   // Initialize Masonry layout with proper timing
+  const requestLayout = () => {
+    if (layoutRafRef.current) cancelAnimationFrame(layoutRafRef.current);
+    layoutRafRef.current = requestAnimationFrame(() => {
+      masonryRef.current && masonryRef.current.layout();
+    });
+  };
+
   const initializeMasonry = () => {
     if (!gridRef.current || !containerReady) return;
 
@@ -76,34 +84,18 @@ const PhotoStream = () => {
         try {
           masonryRef.current = new Masonry(gridRef.current, {
             itemSelector: '.post',
-            columnWidth: '.post',
+            columnWidth: '.grid-sizer',
+            gutter: '.gutter-sizer',
             percentPosition: true,
-            gutter: 10,
-            transitionDuration: 0, // Disable transitions for faster layout
+            fitWidth: false,
+            transitionDuration: 0,
           });
 
-          console.log('Masonry initialized:', masonryRef.current);
+          requestLayout();
 
-          // Force immediate layout
-          masonryRef.current.layout();
-
-          // Use imagesLoaded for safety
-          imagesLoaded(gridRef.current, () => {
-            if (masonryRef.current) {
-              masonryRef.current.layout();
-              console.log('Images loaded, Masonry layout called');
-            }
-          });
-
-          // Progressive layout calls to catch any timing issues
-          const delays = [50, 150, 300, 600, 1000];
-          delays.forEach(delay => {
-            setTimeout(() => {
-              if (masonryRef.current) {
-                masonryRef.current.layout();
-              }
-            }, delay);
-          });
+          // Layout on each image load progress
+          const imgLoad = imagesLoaded(gridRef.current);
+          imgLoad.on('progress', () => requestLayout());
 
           setMasonryInitialized(true);
         } catch (error) {
@@ -158,9 +150,7 @@ const PhotoStream = () => {
 
   // Handle window resize events
   const handleResize = () => {
-    if (masonryRef.current) {
-      masonryRef.current.layout();
-    }
+    requestLayout();
     lazyLoadInstanceRef.current?.update();
   };
 
@@ -201,6 +191,8 @@ const PhotoStream = () => {
   return (
       <div className='photo-stream-container'>
         <div className="masonry-grid" ref={gridRef}>
+        <div className="grid-sizer" />
+        <div className="gutter-sizer" />
         {photos.map((photo, index) => (
             <div key={`${photo.src}-${photo.date}-${index}`} className="post">
               <Photo
