@@ -10,13 +10,13 @@
   top: 0;
   z-index: 100;
   background-color: var(--neu-base);
-  box-shadow: 0 4px 12px var(--neu-dark), 0 -2px 6px var(--neu-light);
+  box-shadow: 0 4px 12px var(--neu-shadow-outer-dark), 0 -2px 6px var(--neu-shadow-outer-light);
   transition: all 0.3s ease;
 }
 
 .dark .site-header {
   background-color: var(--neu-base);
-  box-shadow: 0 4px 12px var(--neu-dark), 0 -2px 6px var(--neu-light);
+  box-shadow: 0 4px 12px var(--neu-shadow-outer-dark), 0 -2px 6px var(--neu-shadow-outer-light);
 }
 
 nav {
@@ -46,16 +46,16 @@ nav {
   background-color: var(--neu-base);
   transition: all 0.2s ease;
   opacity: 0.85;
-  box-shadow: 4px 4px 8px var(--neu-dark), -4px -4px 8px var(--neu-light);
+  box-shadow: 4px 4px 8px var(--neu-shadow-outer-dark), -4px -4px 8px var(--neu-shadow-outer-light);
 }
 
 .nav-link:hover {
-  box-shadow: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light);
+  box-shadow: inset 3px 3px 6px var(--neu-shadow-inset-dark), inset -3px -3px 6px var(--neu-shadow-inset-light);
   opacity: 1;
 }
 
 .nav-link.active {
-  box-shadow: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light);
+  box-shadow: inset 3px 3px 6px var(--neu-shadow-inset-dark), inset -3px -3px 6px var(--neu-shadow-inset-light);
   opacity: 1;
 }
 

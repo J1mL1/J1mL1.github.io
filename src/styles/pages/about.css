@@ -9,8 +9,8 @@
   border-radius: 1.5rem;
   background: var(--neu-base);
   box-shadow:
-    12px 12px 24px var(--neu-dark),
-    -12px -12px 24px var(--neu-light);
+    12px 12px 24px var(--neu-shadow-outer-dark),
+    -12px -12px 24px var(--neu-shadow-outer-light);
 }
 
 .hero-card {
@@ -82,8 +82,8 @@
   border-radius: 999px;
   background: var(--neu-base);
   box-shadow:
-    inset 4px 4px 8px rgba(0, 0, 0, 0.08),
-    inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+    inset 4px 4px 8px var(--neu-shadow-inset-dark),
+    inset -4px -4px 8px var(--neu-shadow-inset-light);
   font-size: 0.85rem;
   color: var(--body-color);
 }
@@ -99,8 +99,8 @@
   border-radius: 1rem;
   background: var(--neu-base);
   box-shadow:
-    inset 6px 6px 12px rgba(0, 0, 0, 0.08),
-    inset -6px -6px 12px rgba(255, 255, 255, 0.45);
+    inset 6px 6px 12px var(--neu-shadow-inset-dark),
+    inset -6px -6px 12px var(--neu-shadow-inset-light);
 }
 
 .meta-label {
@@ -145,8 +145,8 @@
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   box-shadow:
-    8px 8px 18px rgba(0, 0, 0, 0.12),
-    -6px -6px 14px rgba(255, 255, 255, 0.45);
+    8px 8px 18px var(--neu-shadow-outer-dark),
+    -6px -6px 14px var(--neu-shadow-outer-light);
 }
 
 .hero-button.primary {
@@ -163,8 +163,8 @@
 .hero-button:hover {
   transform: translateY(-2px);
   box-shadow:
-    12px 12px 24px rgba(0, 0, 0, 0.14),
-    -8px -8px 20px rgba(255, 255, 255, 0.5);
+    12px 12px 24px var(--neu-shadow-outer-dark),
+    -8px -8px 20px var(--neu-shadow-outer-light);
 }
 
 .hero-pane {
@@ -181,8 +181,8 @@
   border-radius: 1.5rem;
   overflow: hidden;
   box-shadow:
-    20px 20px 40px rgba(0, 0, 0, 0.18),
-    -16px -16px 36px rgba(255, 255, 255, 0.65);
+    20px 20px 40px var(--neu-shadow-outer-dark),
+    -16px -16px 36px var(--neu-shadow-outer-light);
 }
 
 .hero-avatar img {
@@ -218,8 +218,8 @@
   background: var(--neu-base);
   border: 1px solid rgba(var(--accent), 0.12);
   box-shadow:
-    inset 4px 4px 10px rgba(0, 0, 0, 0.06),
-    inset -4px -4px 10px rgba(255, 255, 255, 0.45);
+    inset 4px 4px 10px var(--neu-shadow-inset-dark),
+    inset -4px -4px 10px var(--neu-shadow-inset-light);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
@@ -227,8 +227,8 @@
   transform: translateY(-2px);
   border-color: rgba(var(--accent), 0.5);
   box-shadow:
-    inset 4px 4px 10px rgba(0, 0, 0, 0.1),
-    inset -4px -4px 10px rgba(255, 255, 255, 0.5);
+    inset 4px 4px 10px var(--neu-shadow-inset-dark),
+    inset -4px -4px 10px var(--neu-shadow-inset-light);
 }
 
 .hero-link-icon {
@@ -284,8 +284,8 @@
   background: var(--neu-base);
   border: 1px solid rgba(var(--accent), 0.1);
   box-shadow:
-    inset 6px 6px 14px rgba(0, 0, 0, 0.08),
-    inset -6px -6px 14px rgba(255, 255, 255, 0.4);
+    inset 6px 6px 14px var(--neu-shadow-inset-dark),
+    inset -6px -6px 14px var(--neu-shadow-inset-light);
 }
 
 .item-heading {
@@ -338,8 +338,8 @@
   border-radius: 1.25rem;
   background: var(--neu-base);
   box-shadow:
-    8px 8px 18px rgba(0, 0, 0, 0.12),
-    -8px -8px 18px rgba(255, 255, 255, 0.45);
+    8px 8px 18px var(--neu-shadow-outer-dark),
+    -8px -8px 18px var(--neu-shadow-outer-light);
 }
 
 .item-list li::before {
@@ -353,8 +353,8 @@
   border-radius: 50%;
   background: rgba(var(--accent), 0.85);
   box-shadow:
-    inset 2px 2px 4px rgba(0, 0, 0, 0.15),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.35);
+    inset 2px 2px 4px var(--neu-shadow-inset-dark),
+    inset -2px -2px 4px var(--neu-shadow-inset-light);
 }
 
 .pill-group {
@@ -372,8 +372,8 @@
   background: var(--neu-base);
   border: 1px solid rgba(var(--accent), 0.12);
   box-shadow:
-    inset 4px 4px 10px rgba(0, 0, 0, 0.06),
-    inset -4px -4px 10px rgba(255, 255, 255, 0.45);
+    inset 4px 4px 10px var(--neu-shadow-inset-dark),
+    inset -4px -4px 10px var(--neu-shadow-inset-light);
 }
 
 .inline-link {

@@ -25,7 +25,7 @@
   right: 0;
   bottom: 0;
   background-color: var(--neu-base);
-  box-shadow: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light);
+  box-shadow: inset 3px 3px 6px var(--neu-shadow-inset-dark), inset -3px -3px 6px var(--neu-shadow-inset-light);
   transition: all 0.3s ease;
 }
 
@@ -37,7 +37,7 @@
   left: 4px;
   bottom: 4px;
   background-color: var(--neu-base);
-  box-shadow: 3px 3px 6px var(--neu-dark), -3px -3px 6px var(--neu-light);
+  box-shadow: 3px 3px 6px var(--neu-shadow-outer-dark), -3px -3px 6px var(--neu-shadow-outer-light);
   transition: all 0.3s ease;
 }
 
