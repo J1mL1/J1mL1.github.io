@@ -16,6 +16,12 @@
     --subheading-color: #4f4f4f;
     --body-color: #1a1a1a;
     --card-bg: white;
+    
+    /* Neumorphism shadow colors (light mode) */
+    --neu-shadow-outer-dark: rgba(0, 0, 0, 0.12);
+    --neu-shadow-outer-light: rgba(255, 255, 255, 0.65);
+    --neu-shadow-inset-dark: rgba(0, 0, 0, 0.08);
+    --neu-shadow-inset-light: rgba(255, 255, 255, 0.45);
 }
 
 :root.dark {
@@ -31,4 +37,10 @@
     --heading-color: #f7f7f7;
     --subheading-color: #cdcdcd;
     --body-color: #e8e8e8;
+    
+    /* Neumorphism shadow colors (dark mode) */
+    --neu-shadow-outer-dark: rgba(0, 0, 0, 0.35);
+    --neu-shadow-outer-light: rgba(255, 255, 255, 0.08);
+    --neu-shadow-inset-dark: rgba(0, 0, 0, 0.18);
+    --neu-shadow-inset-light: rgba(255, 255, 255, 0.10);
 }
