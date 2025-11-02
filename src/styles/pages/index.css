@@ -4,19 +4,55 @@ main {
     box-sizing: border-box;
 }
 
-/* Page title styles */
-.page-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 2rem;
+.home-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
 }
 
-/* Dark mode overrides */
-.dark .page-title {
-    color: var(--text-color);
+.card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
 
+.page-heading {
+    font-size: clamp(2.4rem, 5vw, 3rem);
+    font-weight: 700;
+    margin: 0 0 1.5rem 0;
+}
+
+.page-subheading {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0 auto;
+    max-width: 60ch;
+}
+
+.card-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+    color: var(--heading-color);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.card-arrow {
+    color: rgba(var(--accent), 0.8);
+}
+
+.card-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--body-color);
+    opacity: 0.85;
+}
+
+.dark .card-description {
+    opacity: 0.9;
+}
 
 /* Index page specific styles */
 .card-container {
@@ -24,7 +60,7 @@ main {
     margin: 1.5rem 0;
     border: 1px solid rgba(var(--accent), 25%);
     background-color: var(--card-bg);
-    color: var(--text-color);
+    color: var(--body-color);
     padding: 1.5rem;
     border-radius: 0.8rem;
     text-align: center;
@@ -48,7 +84,7 @@ main {
 .dark .card-container {
     background-color: var(--card-bg);
     border-color: rgba(var(--accent), 40%);
-    color: var(--text-color);
+    color: var(--body-color);
 }
 
 /* Grid layout */

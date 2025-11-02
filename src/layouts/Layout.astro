@@ -21,6 +21,12 @@ const { title } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap"
+		/>
 		<title>{title}</title>
 
 		<script is:inline>
@@ -69,8 +75,8 @@ const { title } = Astro.props;
 	<body class="min-h-screen bg-neu-base">
 		<div class="min-h-screen">
 			<Nav />
-			<main class="flex-3 mt-16 px-4 py-8"> 
-				<div class="max-w-6xl mx-auto">
+			<main class="flex-3 mt-16 py-8"> 
+				<div class="content-shell">
 					<slot />
 				</div>
 			</main>
