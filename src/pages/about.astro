@@ -6,14 +6,15 @@ import "../styles/pages/about.css";
 import { Image } from "astro:assets";
 import avatarImage from "../assets/avatar.jpg";
 
-const pageTitle = "About Zirui Li | Multimodal LLM Researcher";
-const pageDescription = "Learn about Zirui Li, a Computer Science PhD student driven by multimodal large language models, interpretability, and AI reasoning research.";
+const pageTitle = "About Zirui Li | Computer Science Ph.D candidate at HITSZ  ";
+const pageDescription = "Learn about Zirui Li, a Computer Science Ph.D candidate at HITSZ, exploring multimodal large language models, interpretability, and AI reasoning.";
 const pageKeywords = [
-    "Zirui Li biography",
-    "Zirui Li research",
-    "Jim Li PhD student",
+    "Zirui Li",
+    "Jim Li",
+    "Li Zirui",
     "multimodal LLM researcher",
-    "AI interpretability researcher"
+    "NLP PhD student",
+    "AI interpretability",
 ];
 const siteOrigin = Astro.site ? Astro.site.origin : "https://j1ml1.github.io";
 const canonicalUrl = `${siteOrigin.replace(/\/$/, "")}${Astro.url.pathname}`;
@@ -47,7 +48,7 @@ const structuredData = [
             "alternateName": "Jim Li",
             "url": canonicalUrl,
             "image": `${siteOrigin}/images/avatar.jpg`,
-            "jobTitle": "Computer Science PhD Student",
+            "jobTitle": "Ph.D candidate in Computer Science",
             "affiliation": {
                 "@type": "CollegeOrUniversity",
                 "name": "Harbin Institute of Technology, Shenzhen"

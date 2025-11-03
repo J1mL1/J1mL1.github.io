@@ -33,14 +33,31 @@ type Props = {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 const bannerImage = resolveThumbnail(entry.data.thumbnail);
+const pageTitle = `${entry.data.title} | Project by Zirui Li`;
+const pageDescription = entry.data.description;
+const pageKeywords = entry.data.tags;
 ---
 
-<Layout title={entry.data.title}>
+<Layout title={pageTitle} description={pageDescription} keywords={pageKeywords}>
   <NeumorphicCard class="project-detail-card">
   <div class="project-detail-container">
     <div class="project-header">
             <a href="/projects" class="back-link">        &larr; Back to Projects      </a>
       <h1 class="page-title">{entry.data.title}</h1>
+      {entry.data.links && entry.data.links.length > 0 && (
+        <div class="project-links project-links--detail" aria-label={`${entry.data.title} resource links`}>
+          {entry.data.links.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener"
+              aria-label={`Visit ${link.label}`}
+            >
+              <img src={link.badge} alt={`${link.label} badge`} loading="lazy" decoding="async" />
+            </a>
+          ))}
+        </div>
+      )}
       <div class="project-meta">
         <div class="project-tags">
           {entry.data.tags.map((tag: string) => (

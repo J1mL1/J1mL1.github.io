@@ -5,6 +5,19 @@ tags: ["Multimodal", "Information Retrieval", "Deep Learning", "Computer Vision"
 date: "2025-05-19"
 thumbnail: "./docmmir_illustrate.png"
 id: "project_docmmir"
+links:
+  - label: "arXiv"
+    href: "https://arxiv.org/abs/2505.19312"
+    badge: "https://img.shields.io/badge/arXiv-2505.19312-b31b1b.svg"
+  - label: "ACL Anthology"
+    href: "https://aclanthology.org/2025.findings-emnlp.705/"
+    badge: "https://img.shields.io/badge/ACL%20Anthology-2025.findings--emnlp.705-9cf.svg"
+  - label: "HF Dataset"
+    href: "https://huggingface.co/datasets/Lord-Jim/DocMMIR"
+    badge: "https://img.shields.io/badge/HF%20Dataset-Lord--Jim%2FDocMMIR-yellow"
+  - label: "License: MIT"
+    href: "https://opensource.org/licenses/MIT"
+    badge: "https://img.shields.io/badge/License-MIT-green.svg"
 ---
 
 # DocMMIR: Cross-Domain Document Multimodal Retrieval Framework
