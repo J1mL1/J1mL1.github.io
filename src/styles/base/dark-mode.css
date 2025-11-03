@@ -1,6 +1,6 @@
 /* Dark mode specific styles */
 .dark .instructions {
-    background-color: #2a2a2a;
+    background-color: var(--neu-base);
     border-color: rgba(var(--accent), 40%);
 }
 
@@ -22,12 +22,12 @@
 }
 
 .dark .link-card {
-    background-color: var(--card-bg);
+    background-color: var(--neu-base);
     box-shadow: 0 4px 6px -1px var(--neu-shadow-outer-light), 0 2px 4px -2px var(--neu-shadow-outer-light);
 }
 
 .dark .link-card > a {
-    background-color: var(--card-bg);
+    background-color: var(--neu-base);
     color: var(--text-color);
 }
 

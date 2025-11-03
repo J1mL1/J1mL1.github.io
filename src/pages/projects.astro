@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import NeumorphicCard from '../components/NeumorphicCard.astro';
 import '../styles/main.css';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
 
 const pageTitle = "My Projects";
 const projectsData = await getCollection('projects');
@@ -10,6 +12,24 @@ const projectsData = await getCollection('projects');
 projectsData.sort((a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) => 
   new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
 );
+
+const thumbnailModules = import.meta.glob('../content/projects/**/*.{png,jpg,jpeg,webp,avif,gif}', {
+  eager: true,
+  import: 'default'
+}) as Record<string, ImageMetadata>;
+
+const resolveThumbnail = (project: CollectionEntry<'projects'>): ImageMetadata | undefined => {
+  const thumbnail = project.data.thumbnail as ImageMetadata | string | undefined;
+  if (!thumbnail) return undefined;
+  if (typeof thumbnail !== 'string') return thumbnail;
+  const key = `../content/projects/${thumbnail.replace(/^\.\//, '')}`;
+  return thumbnailModules[key];
+};
+
+const projects = projectsData.map((project) => ({
+  entry: project,
+  thumbnail: resolveThumbnail(project),
+}));
 ---
 
 <Layout title={pageTitle}>
@@ -22,20 +42,30 @@ projectsData.sort((a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'
         </NeumorphicCard>
 
         <div class="projects-list">
-            {projectsData.map((project: CollectionEntry<'projects'>) => (
+            {projects.map(({ entry: project, thumbnail }, index) => (
                 <NeumorphicCard class="project-card hover:shadow-neu-lg transition-all duration-300">
                     <a href={`/projects/${project.data.id}`} class="block link-plain">
                         <div class="project-content">
                             <div class="project-image-container">
-                                <img 
-                                    src={project.data.thumbnail} 
-                                    alt={project.data.title} 
-                                    class="project-image rounded-lg"
-                                    loading="lazy"
-                                    decoding="async"
-                                    onload="this.classList.add('loaded')"
-                                    onerror="this.src='/images/placeholder.jpg'"
-                                />
+                                {thumbnail ? (
+                                    <Image
+                                        src={thumbnail}
+                                        alt={project.data.title}
+                                        class="project-image rounded-lg"
+                                        loading={index === 0 ? 'eager' : 'lazy'}
+                                        fetchpriority={index === 0 ? 'high' : 'auto'}
+                                        decoding="async"
+                                    />
+                                ) : (
+                                    <img
+                                        src="/images/placeholder.svg"
+                                        alt={`${project.data.title} placeholder`}
+                                        class="project-image rounded-lg"
+                                        loading={index === 0 ? 'eager' : 'lazy'}
+                                        fetchpriority={index === 0 ? 'high' : 'auto'}
+                                        decoding="async"
+                                    />
+                                )}
                                 <div class="project-loading">
                                     <div class="spinner"></div>
                                 </div>
@@ -64,17 +94,30 @@ projectsData.sort((a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'
     document.addEventListener('DOMContentLoaded', () => {
         const images = document.querySelectorAll<HTMLImageElement>('.project-image');
         images.forEach(img => {
-            if (img.complete) {
+            const container = img.closest('.project-image-container');
+            const loadingDiv = container?.querySelector<HTMLElement>('.project-loading');
+
+            const markLoaded = () => {
                 img.classList.add('loaded');
-                const loadingDiv = img.parentElement?.querySelector('.project-loading');
                 if (loadingDiv) (loadingDiv as HTMLElement).style.opacity = '0';
+            };
+
+            if (img.complete) {
+                if (img.naturalWidth === 0) {
+                    img.removeAttribute('srcset');
+                    img.src = '/images/placeholder.svg';
+                }
+                markLoaded();
             } else {
-                img.addEventListener('load', () => {
-                    img.classList.add('loaded');
-                    const loadingDiv = img.parentElement?.querySelector('.project-loading');
-                    if (loadingDiv) (loadingDiv as HTMLElement).style.opacity = '0';
-                });
+                img.addEventListener('load', markLoaded, { once: true });
+                img.addEventListener('error', () => {
+                    img.removeAttribute('srcset');
+                    container?.querySelectorAll('source').forEach(el => el.remove());
+                    img.src = '/images/placeholder.svg';
+                    markLoaded();
+                }, { once: true });
             }
         });
+
     });
 </script> 

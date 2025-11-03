@@ -1,0 +1,46 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NeumorphicCard from "../components/NeumorphicCard.astro";
+import "../styles/main.css";
+
+const pageTitle = "Contact Zirui Li";
+const pageDescription = "Reach out to Zirui Li for collaborations on multimodal LLM research, NLP projects, or photography conversations.";
+const siteOrigin = Astro.site ? Astro.site.origin : "https://j1ml1.github.io";
+const canonicalUrl = `${siteOrigin.replace(/\/$/, "")}${Astro.url.pathname}`;
+const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": pageTitle,
+    "description": pageDescription,
+    "url": canonicalUrl,
+    "mainEntity": {
+        "@type": "Person",
+        "name": "Zirui Li",
+        "email": "mailto:zirui_li_0806@outlook.com",
+        "sameAs": [
+            "https://linkedin.com/in/zirui-li-jim",
+            "https://github.com/J1mL1",
+            "https://huggingface.co/Lord-Jim"
+        ]
+    }
+};
+---
+
+<Layout
+    title={pageTitle}
+    description={pageDescription}
+    structuredData={structuredData}
+    ogImage="/images/avatar.jpg"
+    ogType="profile"
+>
+    <div class="layout-stack layout-stack--lg">
+        <NeumorphicCard class="text-center">
+            <h1 class="page-heading">Let’s Connect</h1>
+            <p class="page-subheading">
+                I'm currently building a richer contact experience. Meanwhile, feel free to email me at
+                <a class="link" href="mailto:zirui_li_0806@outlook.com">zirui_li_0806@outlook.com</a>
+                or reach out on LinkedIn for collaboration opportunities.
+            </p>
+        </NeumorphicCard>
+    </div>
+</Layout>

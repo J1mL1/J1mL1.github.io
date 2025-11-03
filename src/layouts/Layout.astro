@@ -1,6 +1,19 @@
 ---
 export interface Props {
 	title: string;
+	description?: string;
+	canonical?: string;
+	ogImage?: string;
+	ogType?: string;
+	keywords?: string[] | string;
+	structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
+	noIndex?: boolean;
+	robots?: string;
+	twitter?: {
+		card?: 'summary' | 'summary_large_image' | 'app' | 'player';
+		site?: string;
+		creator?: string;
+	};
 }
 
 import "../styles/main.css";
@@ -10,17 +23,58 @@ import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
 import ColorBar from '../components/ColorBar.jsx';
 
-const { title } = Astro.props;
+const {
+	title,
+	description = "Zirui Li is a Computer Science PhD student specializing in multimodal large language models, interpretability, and reasoning.",
+	canonical,
+	ogImage,
+	ogType = 'website',
+	keywords,
+	structuredData,
+	noIndex = false,
+	robots,
+	twitter = {},
+} = Astro.props;
+
+const canonicalUrl = canonical ?? (Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined);
+const keywordsContent = Array.isArray(keywords) ? keywords.join(', ') : keywords;
+const defaultOgImage = Astro.site ? new URL('/images/avatar.jpg', Astro.site).href : undefined;
+const resolvedOgImage = ogImage
+	? (ogImage.startsWith('http') ? ogImage : (Astro.site ? new URL(ogImage, Astro.site).href : ogImage))
+	: defaultOgImage;
+const robotsContent = robots ?? (noIndex ? 'noindex, nofollow' : undefined);
+const twitterCard = twitter.card ?? 'summary_large_image';
+const twitterSite = twitter.site;
+const twitterCreator = twitter.creator;
+
+const serializedStructuredData = structuredData
+	? JSON.stringify(structuredData, null, 2)
+	: undefined;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
+		{description && <meta name="description" content={description} />}
+		<meta name="author" content="Zirui Li" />
 		<meta name="viewport" content="width=device-width" />
+		{keywordsContent && <meta name="keywords" content={keywordsContent} />}
+		{robotsContent && <meta name="robots" content={robotsContent} />}
+		{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<meta property="og:title" content={title} />
+		{description && <meta property="og:description" content={description} />}
+		{canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+		<meta property="og:type" content={ogType} />
+		{resolvedOgImage && <meta property="og:image" content={resolvedOgImage} />}
+		<meta name="twitter:card" content={twitterCard} />
+		{title && <meta name="twitter:title" content={title} />}
+		{description && <meta name="twitter:description" content={description} />}
+		{resolvedOgImage && <meta name="twitter:image" content={resolvedOgImage} />}
+		{twitterSite && <meta name="twitter:site" content={twitterSite} />}
+		{twitterCreator && <meta name="twitter:creator" content={twitterCreator} />}
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -28,6 +82,11 @@ const { title } = Astro.props;
 			href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap"
 		/>
 		<title>{title}</title>
+		{serializedStructuredData && (
+			<script type="application/ld+json" is:inline>
+				{serializedStructuredData}
+			</script>
+		)}
 
 		<script is:inline>
 			// render dark mode
