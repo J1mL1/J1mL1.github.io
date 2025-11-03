@@ -8,7 +8,8 @@ const isHome = href === '/' && path === '';
 const isOtherPages = typeof href === "string" && href.length > 1
     ? path.substring(1).startsWith(href.substring(1))
     : false;
-const isActive = isHome || isOtherPages
+const isActive = isHome || isOtherPages;
+const ariaCurrent = isActive ? 'page' : undefined;
 ---
 
 <a
@@ -18,5 +19,6 @@ const isActive = isHome || isOtherPages
     { "active": isActive },
     "nav-link",
   ]}
+  aria-current={ariaCurrent}
   {...props}
 ><slot /></a>

@@ -1,14 +1,30 @@
-<footer style="position: fixed; bottom: 0; width: 100%; z-index: 1000;">
-    <p class="text-center">
-        J1mL1 Copyright &copy; 
-        <span id ='copyright'></span> | Built with 
-        <span class="text-gradient">Astro</span>
-    </p>
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<p class="text-center">
+		J1mL1 Copyright &copy; {currentYear} | Built with <span class="text-gradient">Astro</span>
+	</p>
 </footer>
 
-<script>
-    document.querySelector('#copyright').textContent = 
-    new Date()
-        .getFullYear()
-        .toString();
-</script>
+<style>
+	.site-footer {
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		z-index: 1000;
+		padding: 0.75rem 1rem;
+		background: linear-gradient(
+			to top,
+			rgba(var(--accent), 0.05),
+			rgba(var(--accent), 0)
+		);
+		backdrop-filter: blur(6px);
+	}
+
+	.site-footer p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+</style>
