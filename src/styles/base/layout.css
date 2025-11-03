@@ -18,6 +18,11 @@ body {
     flex-direction: column;
 }
 
+main {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .content-shell {
     width: 100%;
     max-width: 1200px;
@@ -43,6 +48,12 @@ h6 {
     color: var(--heading-color);
 }
 
+.page-heading {
+    font-size: clamp(2.4rem, 5vw, 3rem);
+    font-weight: 700;
+    margin: 0 0 1.5rem;
+}
+
 body,
 p,
 li,
@@ -54,6 +65,13 @@ span {
 .section-subheading,
 .lead-text {
     color: var(--subheading-color);
+}
+
+.page-subheading {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0 auto;
+    max-width: 60ch;
 }
 
 .subheading {

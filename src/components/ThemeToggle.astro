@@ -1,56 +1,49 @@
 <div class="theme-toggle">
-  <label class="switch">
-    <input type="checkbox" id="theme-toggle">
-    <span class="slider round"></span>
-  </label>
+	<label class="switch">
+		<input type="checkbox" id="theme-toggle" aria-label="Toggle dark mode">
+		<span class="slider round"></span>
+	</label>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('theme-toggle') as HTMLInputElement;
-    
-    if (!themeToggle) {
-      console.error('Theme toggle element not found');
-      return;
-    }
+	document.addEventListener('DOMContentLoaded', () => {
+		const themeToggle = document.getElementById('theme-toggle');
+		if (!(themeToggle instanceof HTMLInputElement)) return;
 
-    const applyStoredTheme = () => {
-      const storedGradient = localStorage.getItem('accent-gradient');
-      const storedAccent = localStorage.getItem('accent');
-      const storedDarkGradient = localStorage.getItem('accent-gradient-dark');
-      if (storedGradient) {
-        document.documentElement.style.setProperty('--accent-gradient', storedGradient);
-      }
-      if (storedAccent) {
-        document.documentElement.style.setProperty('--accent', storedAccent);
-      }
-      if (storedDarkGradient) {
-        document.documentElement.style.setProperty('--accent-gradient-dark', storedDarkGradient);
-      }
-    };
+		const applyStoredTheme = () => {
+			const storedGradient = localStorage.getItem('accent-gradient');
+			const storedAccent = localStorage.getItem('accent');
+			const storedDarkGradient = localStorage.getItem('accent-gradient-dark');
+			if (storedGradient) {
+				document.documentElement.style.setProperty('--accent-gradient', storedGradient);
+			}
+			if (storedAccent) {
+				document.documentElement.style.setProperty('--accent', storedAccent);
+			}
+			if (storedDarkGradient) {
+				document.documentElement.style.setProperty('--accent-gradient-dark', storedDarkGradient);
+			}
+		};
 
-    // Check local storage theme settings
-    if (localStorage.getItem('theme') === 'dark' || 
-        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-      themeToggle.checked = true;
-    }
+		const storedTheme = localStorage.getItem('theme');
+		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    applyStoredTheme();
+		if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+			document.documentElement.classList.add('dark');
+			themeToggle.checked = true;
+		}
 
-    // Toggle theme
-    themeToggle.addEventListener('change', (e: Event) => {
-      const target = e.target as HTMLInputElement;
-      if (target.checked) {
-        console.log('Switched to dark mode');
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        console.log('Switched to light mode');
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
-      applyStoredTheme();
-    });
-  });
+		applyStoredTheme();
+
+		themeToggle.addEventListener('change', () => {
+			if (themeToggle.checked) {
+				document.documentElement.classList.add('dark');
+				localStorage.setItem('theme', 'dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+				localStorage.setItem('theme', 'light');
+			}
+			applyStoredTheme();
+		});
+	});
 </script>

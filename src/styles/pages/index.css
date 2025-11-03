@@ -1,34 +1,3 @@
-/* Main content styles */
-main {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.home-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-}
-
-.card-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-}
-
-.page-heading {
-    font-size: clamp(2.4rem, 5vw, 3rem);
-    font-weight: 700;
-    margin: 0 0 1.5rem 0;
-}
-
-.page-subheading {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin: 0 auto;
-    max-width: 60ch;
-}
-
 .card-title {
     font-size: 1.75rem;
     font-weight: 600;

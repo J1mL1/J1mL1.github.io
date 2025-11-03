@@ -1,33 +1,76 @@
 ---
-export interface Props {
+export interface Props
+	extends astroHTML.JSX.AnchorHTMLAttributes<HTMLAnchorElement>,
+		astroHTML.JSX.ButtonHTMLAttributes<HTMLButtonElement> {
 	class?: string;
-	type?: 'button' | 'submit' | 'reset';
 	href?: string;
-	onClick?: () => void;
+	variant?: 'default' | 'ghost';
 }
 
-const { class: className = '', type = 'button', href, onClick } = Astro.props;
+const {
+	class: className = '',
+	href,
+	variant = 'default',
+	type = 'button',
+	target,
+	rel,
+	disabled = false,
+	...rest
+} = Astro.props;
 
-const baseClasses = `bg-neu-base rounded-xl px-6 py-3 transition-all duration-200 shadow-neu-md hover:shadow-neu-lg active:shadow-neu-inset-md cursor-pointer inline-block text-center font-medium ${className}`;
+const baseClasses = [
+	'neu-surface',
+	'rounded-xl',
+	'px-6',
+	'py-3',
+	'transition-all',
+	'duration-200',
+	'shadow-neu-md',
+	'hover:shadow-neu-lg',
+	'active:shadow-neu-inset-md',
+	'cursor-pointer',
+	'font-medium',
+	'inline-flex',
+	'items-center',
+	'justify-center',
+	'gap-2',
+	className,
+];
+
+if (variant === 'ghost') {
+	baseClasses.push(
+		'bg-transparent',
+		'border',
+		'border-transparent',
+		'hover:border-current'
+	);
+}
+
+if (disabled) {
+	baseClasses.push('opacity-60', 'cursor-not-allowed', 'hover:shadow-neu-md');
+}
+
+const externalRel = target === '_blank' ? rel ?? 'noopener noreferrer' : rel;
 ---
 
 {href ? (
-	<a href={href} class={baseClasses}>
+	<a
+		href={href}
+		target={target}
+		rel={externalRel}
+		aria-disabled={disabled ? 'true' : undefined}
+		class:list={baseClasses}
+		{...rest}
+	>
 		<slot />
 	</a>
 ) : (
-	<button type={type} class={baseClasses} onClick={onClick}>
+	<button
+		type={type}
+		class:list={baseClasses}
+		disabled={disabled}
+		{...rest}
+	>
 		<slot />
 	</button>
 )}
-
-<style>
-	:global(.bg-neu-base) {
-		background-color: var(--neu-base);
-	}
-	
-	:global(button:active, a:active) {
-		transform: scale(0.98);
-	}
-</style>
-
