@@ -91,18 +91,24 @@
 }
 
 .hero-meta {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  display: inline-flex;
   gap: 1rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .hero-meta-item {
+  display: inline-flex;
+  flex-direction: column;
+  flex: 0 0 auto;
   padding: 1rem;
   border-radius: 1rem;
   background: var(--neu-base);
   box-shadow:
     inset 6px 6px 12px var(--neu-shadow-inset-dark),
     inset -6px -6px 12px var(--neu-shadow-inset-light);
+  width: fit-content;
+  max-width: 100%;
 }
 
 .meta-label {
