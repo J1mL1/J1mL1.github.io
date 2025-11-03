@@ -2,7 +2,7 @@
     list-style: none;
     display: flex;
     padding: 0.25rem;
-    background-color: white;
+    background-color: var(--neu-base);
     background-size: 400%;
     border-radius: 0.6rem;
     background-position: 100%;
@@ -28,7 +28,7 @@
     padding: 1rem 1.3rem;
     border-radius: 0.35rem;
     color: var(--text-color);
-    background-color: var(--card-bg);
+    background-color: var(--neu-base);
     opacity: 0.8;
 }
 

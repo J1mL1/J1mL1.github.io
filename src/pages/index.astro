@@ -3,15 +3,68 @@ import Layout from '../layouts/Layout.astro';
 import NeumorphicCard from '../components/NeumorphicCard.astro';
 import '../styles/main.css';
 
-const pageTitle = "Zirui Li's Personal Space"
+const pageTitle = "Zirui Li | Multimodal LLM & NLP Researcher";
+const pageDescription = "Discover the research, projects, and photography of Zirui Li, a Computer Science PhD student exploring multimodal large language models, interpretability, and reasoning.";
+const pageKeywords = [
+    "Zirui Li",
+    "Jim Li",
+    "Li Zirui",
+    "multimodal LLM researcher",
+    "NLP PhD student",
+    "AI interpretability",
+];
+const siteOrigin = Astro.site ? Astro.site.origin : "https://j1ml1.github.io";
+const canonicalUrl = `${siteOrigin.replace(/\/$/, "")}${Astro.url.pathname}`;
+const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${canonicalUrl}#zirui-li`,
+    "name": "Zirui Li",
+    "alternateName": "Jim Li",
+    "url": canonicalUrl,
+    "image": `${siteOrigin}/images/avatar.jpg`,
+    "jobTitle": "Computer Science PhD Student",
+    "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "Harbin Institute of Technology, Shenzhen"
+    },
+    "description": pageDescription,
+    "worksFor": {
+        "@type": "Organization",
+        "name": "Harbin Institute of Technology, Shenzhen"
+    },
+    "knowsAbout": [
+        "multimodal large language models",
+        "natural language processing",
+        "LLM interpretability",
+        "LLM reasoning",
+        "AI research"
+    ],
+    "sameAs": [
+        "https://linkedin.com/in/zirui-li-jim",
+        "https://github.com/J1mL1",
+        "https://huggingface.co/Lord-Jim",
+        "https://www.instagram.com/lord_j1m/"
+    ],
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": canonicalUrl
+    }
+};
 ---
 
-<Layout title={pageTitle}>
+<Layout
+    title={pageTitle}
+    description={pageDescription}
+    keywords={pageKeywords}
+    ogImage="/images/avatar.jpg"
+    structuredData={personSchema}
+>
     <div class="layout-stack layout-stack--lg">
         <NeumorphicCard class="mb-8">
-            <h1 class="page-heading text-center">Welcome to <span class="text-gradient">Zirui's Corner</span></h1>
+            <h1 class="page-heading text-center">Welcome to <span class="text-gradient">Zirui Li's Corner</span></h1>
             <p class="page-subheading text-center">
-                Hello! I'm <strong>Zirui Li</strong>, you can call me <strong>Jim</strong>. I'm a computer science PhD student passionate about Natural Language Processing, especially in multimodal LLM research, machenism interpretability, and LLM reasoning. This is where I document my projects, life insights, and photographic works 📝
+                Hello! I'm <strong>Zirui Li</strong>, you can call me <strong>Jim</strong>. I'm a computer science PhD student passionate about Natural Language Processing, especially in multimodal LLM research, mechanism interpretability, and LLM reasoning. This is where I document my projects, life insights, and photographic works 📝
             </p>
         </NeumorphicCard>
 
