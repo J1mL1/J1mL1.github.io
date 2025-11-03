@@ -13,7 +13,7 @@ projectsData.sort((a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'
 ---
 
 <Layout title={pageTitle}>
-    <div class="projects-layout">
+    <div class="projects-layout layout-stack layout-stack--lg">
         <NeumorphicCard class="projects-hero text-center mb-8">
             <h1 class="page-heading">My <span class="text-gradient">Project</span> Collection</h1>
             <p class="page-subheading">
@@ -24,7 +24,7 @@ projectsData.sort((a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'
         <div class="projects-list">
             {projectsData.map((project: CollectionEntry<'projects'>) => (
                 <NeumorphicCard class="project-card hover:shadow-neu-lg transition-all duration-300">
-                    <a href={`/projects/${project.data.id}`} class="project-link block">
+                    <a href={`/projects/${project.data.id}`} class="block link-plain">
                         <div class="project-content">
                             <div class="project-image-container">
                                 <img 

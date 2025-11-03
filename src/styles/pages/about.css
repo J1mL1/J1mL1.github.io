@@ -1,7 +1,5 @@
 .about-container {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
+  --stack-gap: 3rem;
 }
 
 .about-card {
@@ -409,7 +407,7 @@
 
 @media (max-width: 768px) {
   .about-container {
-    gap: 2rem;
+    --stack-gap: 2rem;
   }
 
   .about-card {

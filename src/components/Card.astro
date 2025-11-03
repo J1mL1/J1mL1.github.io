@@ -1,21 +1,38 @@
 ---
-export interface Props {
+export interface Props extends astroHTML.JSX.LiHTMLAttributes<HTMLLIElement> {
 	title: string;
 	body: string;
 	href: string;
 }
 
-const { href, title, body } = Astro.props;
+const {
+	href,
+	title,
+	body,
+	class: className = '',
+	target,
+	rel,
+	...rest
+} = Astro.props;
+
+const externalRel = target === '_blank' ? rel ?? 'noopener noreferrer' : rel;
 ---
 
-<li class="link-card">
-	<a href={href}>
-		<h2>
-			{title}
-			<span>&rarr;</span>
-		</h2>
-		<p>
-			{body}
-		</p>
+<li class:list={['link-card', className]} {...rest}>
+	<a
+		href={href}
+		class="link-plain"
+		target={target}
+		rel={externalRel}
+	>
+		<slot name="title">
+			<h2>
+				{title}
+				<span aria-hidden="true">&rarr;</span>
+			</h2>
+		</slot>
+		<slot>
+			<p>{body}</p>
+		</slot>
 	</a>
 </li>

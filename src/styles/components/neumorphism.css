@@ -1,5 +1,10 @@
 /* Custom Neumorphism Utilities */
 
+.neu-surface {
+  background-color: var(--neu-base);
+  color: var(--body-color);
+}
+
 /* Light mode shadows */
 .shadow-neu-sm {
   box-shadow: 
@@ -86,4 +91,3 @@
     inset 6px 6px 12px var(--neu-shadow-inset-dark),
     inset -6px -6px 12px var(--neu-shadow-inset-light);
 }
-
