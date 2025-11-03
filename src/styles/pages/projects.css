@@ -307,6 +307,8 @@
 .project-date {
   font-size: 0.85rem;
   color: var(--subheading-color);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* 项目详情页面样式 */
