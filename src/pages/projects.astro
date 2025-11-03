@@ -6,7 +6,16 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 
-const pageTitle = "My Projects";
+const pageTitle = "Project Portfolio | Zirui Li";
+const pageDescription = "Discover AI and NLP projects by Zirui Li, featuring multimodal retrieval research, interpretability work, and creative technology experiments.";
+const pageKeywords = [
+  'Zirui Li projects',
+  'AI portfolio',
+  'NLP research',
+  'multimodal LLM',
+  'model interpretability',
+  'research showcase',
+];
 const projectsData = await getCollection('projects');
 // Sort by date, newest first
 projectsData.sort((a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) => 
@@ -26,31 +35,48 @@ const resolveThumbnail = (project: CollectionEntry<'projects'>): ImageMetadata |
   return thumbnailModules[key];
 };
 
-const projects = projectsData.map((project) => ({
-  entry: project,
-  thumbnail: resolveThumbnail(project),
-}));
----
+const projects = projectsData.map((entry) => {
+  const links = Array.isArray(entry.data.links) ? entry.data.links : [];
 
-<Layout title={pageTitle}>
+  return {
+    entry,
+    thumbnail: resolveThumbnail(entry),
+    href: `/projects/${entry.data.id}`,
+    links,
+  };
+});
+
+const tagKeywords = Array.from(new Set(projectsData.flatMap((project) => project.data.tags)));
+
+const combinedKeywords = Array.from(new Set([...pageKeywords, ...tagKeywords]));
+---
+<Layout title={pageTitle} description={pageDescription} keywords={combinedKeywords}>
     <div class="projects-layout layout-stack layout-stack--lg">
         <NeumorphicCard class="projects-hero text-center mb-8">
-            <h1 class="page-heading">My <span class="text-gradient">Project</span> Collection</h1>
+            <h1 class="page-heading">Zirui Li's <span class="text-gradient">Project Portfolio</span></h1>
             <p class="page-subheading">
-                Here are some of my recent projects. Click to view details.
+                Explore AI and NLP projects covering multimodal retrieval, model interpretability, and creative applications built during my PhD journey.
             </p>
         </NeumorphicCard>
 
         <div class="projects-list">
-            {projects.map(({ entry: project, thumbnail }, index) => (
-                <NeumorphicCard class="project-card hover:shadow-neu-lg transition-all duration-300">
-                    <a href={`/projects/${project.data.id}`} class="block link-plain">
+            {projects.map(({ entry, thumbnail, href, links }, index) => {
+                const { title, description, tags, date } = entry.data;
+
+                return (
+                    <NeumorphicCard
+                        class="project-card hover:shadow-neu-lg transition-all duration-300"
+                        data-href={href}
+                        role="link"
+                        tabindex="0"
+                        aria-label={`View project ${title}`}
+                    >
                         <div class="project-content">
                             <div class="project-image-container">
                                 {thumbnail ? (
                                     <Image
                                         src={thumbnail}
-                                        alt={project.data.title}
+                                        alt={title}
                                         class="project-image rounded-lg"
                                         loading={index === 0 ? 'eager' : 'lazy'}
                                         fetchpriority={index === 0 ? 'high' : 'auto'}
@@ -59,7 +85,7 @@ const projects = projectsData.map((project) => ({
                                 ) : (
                                     <img
                                         src="/images/placeholder.svg"
-                                        alt={`${project.data.title} placeholder`}
+                                        alt={`${title} placeholder`}
                                         class="project-image rounded-lg"
                                         loading={index === 0 ? 'eager' : 'lazy'}
                                         fetchpriority={index === 0 ? 'high' : 'auto'}
@@ -71,53 +97,98 @@ const projects = projectsData.map((project) => ({
                                 </div>
                             </div>
                             <div class="project-details">
-                                <h2 class="project-title">{project.data.title}</h2>
-                                <p class="project-desc">{project.data.description}</p>
-                                <div class="project-meta">
-                                    <div class="project-tags">
-                                        {project.data.tags.map((tag: string) => (
-                                            <span class="project-tag">{tag}</span>
+                                <h2 class="project-title">{title}</h2>
+                                {links.length > 0 && (
+                                    <div class="project-links" aria-label={`${title} resource links`}>
+                                        {links.map((link) => (
+                                            <a
+                                                href={link.href}
+                                                target="_blank"
+                                                rel="noopener"
+                                                aria-label={`Visit ${link.label}`}
+                                                on:click={(event) => event.stopPropagation()}
+                                            >
+                                                <img src={link.badge} alt={`${link.label} badge`} loading="lazy" decoding="async" />
+                                            </a>
                                         ))}
                                     </div>
-                                    <div class="project-date">{project.data.date}</div>
-                                </div>
+                                )}
+                                <p class="project-desc">{description}</p>
                             </div>
                         </div>
-                    </a>
-                </NeumorphicCard>
-            ))}
+                        <div class="project-meta project-meta--footer">
+                            <div class="project-tags">
+                                {tags.map((tag: string) => (
+                                    <span class="project-tag">{tag}</span>
+                                ))}
+                            </div>
+                            <div class="project-date">{date}</div>
+                        </div>
+                    </NeumorphicCard>
+                );
+            })}
         </div>
     </div>
 </Layout>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const images = document.querySelectorAll<HTMLImageElement>('.project-image');
-        images.forEach(img => {
-            const container = img.closest('.project-image-container');
-            const loadingDiv = container?.querySelector<HTMLElement>('.project-loading');
+    const handleImageLoading = (img: HTMLImageElement) => {
+        const container = img.closest('.project-image-container');
+        const loadingOverlay = container?.querySelector<HTMLElement>('.project-loading');
 
-            const markLoaded = () => {
-                img.classList.add('loaded');
-                if (loadingDiv) (loadingDiv as HTMLElement).style.opacity = '0';
+        const markLoaded = () => {
+            img.classList.add('loaded');
+            if (loadingOverlay) loadingOverlay.style.opacity = '0';
+        };
+
+        if (img.complete) {
+            if (img.naturalWidth === 0) {
+                img.removeAttribute('srcset');
+                img.src = '/images/placeholder.svg';
+            }
+            markLoaded();
+            return;
+        }
+
+        img.addEventListener('load', markLoaded, { once: true });
+        img.addEventListener('error', () => {
+            img.removeAttribute('srcset');
+            container?.querySelectorAll('source').forEach((el) => el.remove());
+            img.src = '/images/placeholder.svg';
+            markLoaded();
+        }, { once: true });
+    };
+
+    const enhanceProjectCards = () => {
+        const projectCards = document.querySelectorAll<HTMLElement>('.project-card[data-href]');
+        projectCards.forEach((card) => {
+            const href = card.dataset.href;
+            if (!href) return;
+
+            const navigate = () => {
+                window.location.href = href;
             };
 
-            if (img.complete) {
-                if (img.naturalWidth === 0) {
-                    img.removeAttribute('srcset');
-                    img.src = '/images/placeholder.svg';
+            card.addEventListener('click', (event) => {
+                const target = event.target as HTMLElement;
+                if (target.closest('.project-links a')) {
+                    event.stopPropagation();
+                    return;
                 }
-                markLoaded();
-            } else {
-                img.addEventListener('load', markLoaded, { once: true });
-                img.addEventListener('error', () => {
-                    img.removeAttribute('srcset');
-                    container?.querySelectorAll('source').forEach(el => el.remove());
-                    img.src = '/images/placeholder.svg';
-                    markLoaded();
-                }, { once: true });
-            }
-        });
+                navigate();
+            });
 
+            card.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    navigate();
+                }
+            });
+        });
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll<HTMLImageElement>('.project-image').forEach(handleImageLoading);
+        enhanceProjectCards();
     });
 </script> 
