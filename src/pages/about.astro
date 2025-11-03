@@ -3,11 +3,77 @@ import Layout from "../layouts/Layout.astro";
 import NeumorphicCard from "../components/NeumorphicCard.astro";
 import "../styles/main.css";
 import "../styles/pages/about.css";
+import { Image } from "astro:assets";
+import avatarImage from "../assets/avatar.jpg";
 
-const pageTitle = "About Me";
+const pageTitle = "About Zirui Li | Multimodal LLM Researcher";
+const pageDescription = "Learn about Zirui Li, a Computer Science PhD student driven by multimodal large language models, interpretability, and AI reasoning research.";
+const pageKeywords = [
+    "Zirui Li biography",
+    "Zirui Li research",
+    "Jim Li PhD student",
+    "multimodal LLM researcher",
+    "AI interpretability researcher"
+];
+const siteOrigin = Astro.site ? Astro.site.origin : "https://j1ml1.github.io";
+const canonicalUrl = `${siteOrigin.replace(/\/$/, "")}${Astro.url.pathname}`;
+const structuredData = [
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": pageTitle,
+        "description": pageDescription,
+        "url": canonicalUrl,
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": `${siteOrigin}/`
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "About",
+                    "item": canonicalUrl
+                }
+            ]
+        },
+        "primaryEntity": {
+            "@type": "Person",
+            "name": "Zirui Li",
+            "alternateName": "Jim Li",
+            "url": canonicalUrl,
+            "image": `${siteOrigin}/images/avatar.jpg`,
+            "jobTitle": "Computer Science PhD Student",
+            "affiliation": {
+                "@type": "CollegeOrUniversity",
+                "name": "Harbin Institute of Technology, Shenzhen"
+            },
+            "email": "mailto:zirui_li_0806@outlook.com",
+            "sameAs": [
+                "https://linkedin.com/in/zirui-li-jim",
+                "https://github.com/J1mL1",
+                "https://huggingface.co/Lord-Jim",
+                "https://www.instagram.com/lord_j1m/"
+            ]
+        }
+    }
+];
+
+const heroImage = avatarImage;
 ---
 
-<Layout title={pageTitle}>
+<Layout
+    title={pageTitle}
+    description={pageDescription}
+    keywords={pageKeywords}
+    structuredData={structuredData}
+    ogImage="/images/avatar.jpg"
+    ogType="profile"
+>
     <div class="container about-container layout-stack">
         <NeumorphicCard class="about-card hero-card">
             <section class="hero">
@@ -15,7 +81,7 @@ const pageTitle = "About Me";
                     <p class="hero-kicker">Hello, I'm</p>
                     <h1 class="hero-name">Zirui Li 李梓睿</h1>
                     <p class="hero-role">
-                        Computer Science PhD student blending Natural Language Processing, especially in multimodal LLM research, machenism interpretability,
+                        Computer Science PhD student blending Natural Language Processing, especially in multimodal LLM research, mechanism interpretability,
                         and LLM reasoning.
                     </p>
                     <div class="hero-badges">
@@ -42,9 +108,10 @@ const pageTitle = "About Me";
                 </div>
                 <div class="hero-pane">
                     <div class="hero-avatar">
-                        <img
-                            src="/images/avatar.jpg"
+                        <Image
+                            src={heroImage}
                             alt="Portrait of Zirui Li"
+                            class="hero-avatar-image"
                             loading="lazy"
                             decoding="async"
                         />

@@ -28,7 +28,7 @@
     line-height: 1.8;
     margin: 1.5rem 0;
     border: 1px solid rgba(var(--accent), 25%);
-    background-color: var(--card-bg);
+    background-color: var(--neu-base);
     color: var(--body-color);
     padding: 1.5rem;
     border-radius: 0.8rem;
@@ -51,7 +51,7 @@
 
 /* Dark mode overrides */
 .dark .card-container {
-    background-color: var(--card-bg);
+    background-color: var(--neu-base);
     border-color: rgba(var(--accent), 40%);
     color: var(--body-color);
 }

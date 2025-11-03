@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NeumorphicCard from '../../components/NeumorphicCard.astro';
+import '../../styles/main.css';
+
+const pageTitle = "Zirui Li Blog | Coming Soon";
+const pageDescription = "Explore Zirui Li's upcoming articles on multimodal LLMs, NLP research discoveries, and technical deep dives.";
+const siteOrigin = Astro.site ? Astro.site.origin : "https://j1ml1.github.io";
+const canonicalUrl = `${siteOrigin.replace(/\/$/, "")}${Astro.url.pathname}`;
+const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Zirui Li Blog",
+    "description": pageDescription,
+    "url": canonicalUrl,
+    "publisher": {
+        "@type": "Person",
+        "name": "Zirui Li"
+    }
+};
+---
+
+<Layout
+    title={pageTitle}
+    description={pageDescription}
+    structuredData={structuredData}
+    ogImage="/images/avatar.jpg"
+    ogType="website"
+>
+    <div class="layout-stack layout-stack--lg">
+        <NeumorphicCard class="text-center">
+            <h1 class="page-heading">Blog Under Construction</h1>
+            <p class="page-subheading">
+                Thanks for stopping by! I'm curating posts on multimodal large language models, interpretability, and research life.
+            </p>
+        </NeumorphicCard>
+    </div>
+</Layout>

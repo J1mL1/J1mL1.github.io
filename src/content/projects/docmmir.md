@@ -3,7 +3,7 @@ title: "DocMMIR: Cross-Domain Document Multimodal Retrieval Framework"
 description: "DocMMIR is a unified cross-domain multimodal document retrieval framework that combines text and visual information, building large-scale cross-domain benchmarks and exploring different fusion strategies and loss functions to improve retrieval performance."
 tags: ["Multimodal", "Information Retrieval", "Deep Learning", "Computer Vision", "Natural Language Processing"]
 date: "2025-05-19"
-thumbnail: "/images/projects/docmmir_illustrate.png"
+thumbnail: "./docmmir_illustrate.png"
 id: "project_docmmir"
 ---
 
