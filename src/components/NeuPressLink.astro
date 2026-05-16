@@ -1,0 +1,48 @@
+---
+/**
+ * Anchor with optional neumorphic press interaction (nav / icon buttons).
+ * `variant="social"` — raised circular icon (e.g. inside About `ul.hero-social-links`).
+ * Social variant forces `neu-press-button` off; styles are in `src/styles/components/neu-press-link.css`.
+ */
+export interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
+	pressable?: boolean;
+	variant?: 'default' | 'social' | 'research';
+	/** Larger glyph (e.g. Hugging Face) */
+	socialIcon?: 'default' | 'large';
+}
+
+const {
+	class: className,
+	href,
+	target,
+	rel,
+	pressable = true,
+	variant = 'default',
+	socialIcon = 'default',
+	...rest
+} = Astro.props;
+const externalRel = target === '_blank' ? rel ?? 'noopener noreferrer' : rel;
+const isSocial = variant === 'social';
+const isResearch = variant === 'research';
+const usePressClass = !isSocial && !isResearch && pressable;
+---
+
+<a
+	href={href}
+	class:list={[usePressClass ? 'neu-press-button' : null, isSocial ? 'neu-press-link--social' : null, isResearch ? 'neu-press-link--research' : null, className]}
+	target={target}
+	rel={externalRel}
+	{...rest}
+>
+	{
+		isSocial ? (
+			<span
+				class:list={['neu-press-link__icon', socialIcon === 'large' ? 'neu-press-link__icon--large' : null]}
+			>
+				<slot />
+			</span>
+		) : (
+			<slot />
+		)
+	}
+</a>

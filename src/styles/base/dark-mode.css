@@ -1,9 +1,4 @@
 /* Dark mode specific styles */
-.dark .instructions {
-    background-color: var(--neu-base);
-    border-color: rgba(var(--accent), 40%);
-}
-
 .dark .nav-link {
     color: rgb(var(--accent));
 }

@@ -79,6 +79,33 @@
     inset -12px -12px 24px var(--neu-shadow-inset-light);
 }
 
+/* Raised control → pressed (inset) on hover/active — same feel as main nav icon buttons */
+.neu-press-button {
+  background-color: var(--neu-base);
+  color: var(--text-color);
+  transition: all 0.2s ease;
+  opacity: 0.85;
+  text-decoration: none;
+  box-shadow:
+    4px 4px 8px var(--neu-shadow-outer-dark),
+    -4px -4px 8px var(--neu-shadow-outer-light);
+}
+
+.neu-press-button:hover,
+.neu-press-button:focus-visible {
+  box-shadow:
+    inset 3px 3px 6px var(--neu-shadow-inset-dark),
+    inset -3px -3px 6px var(--neu-shadow-inset-light);
+  opacity: 1;
+}
+
+.neu-press-button:active {
+  box-shadow:
+    inset 3px 3px 6px var(--neu-shadow-inset-dark),
+    inset -3px -3px 6px var(--neu-shadow-inset-light);
+  opacity: 1;
+}
+
 /* Hover utilities to align interactive effects across site */
 .neu-hover-inset-sm:hover {
   box-shadow:
