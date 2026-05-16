@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:aclanthology.org)",
+      "WebFetch(domain:arxiv.org)"
+    ]
+  }
+}

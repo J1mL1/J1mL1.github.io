@@ -46,8 +46,6 @@ const Lightbox = ({ photos, currentIndex, onClose }) => {
         ihdr: false
       });
 
-      console.log('EXIF Data:', exifData);
-      
       if (!exifData) {
         setCurrentMetadata({
           error: '此图片不包含EXIF数据'

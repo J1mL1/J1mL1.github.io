@@ -24,8 +24,13 @@
     --neu-shadow-inset-dark: rgba(0, 0, 0, 0.08);
     --neu-shadow-inset-light: rgba(255, 255, 255, 0.45);
 
+    /* Radius: match Tailwind rounded-xl on NeumorphicCard (0.75rem) */
+    --radius-neu-card: 0.75rem;
+    --radius-neu-nested: 0.5rem;
+    /* Slightly rounder inset chips (e.g. About hero Location / Email) */
+    --radius-neu-chip: 1rem;
+
     /* Grid background line colors (light mode) */
-    --grid-line-dark: rgba(0, 0, 0, 0.08);
     --grid-line-light: rgba(255, 255, 255, 0.20);
 }
 
