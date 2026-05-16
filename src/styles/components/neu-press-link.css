@@ -1,0 +1,219 @@
+/* NeuPressLink variant="research" — raised neumorphic paper cards */
+
+.neu-press-link--research {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--neu-base);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  box-shadow:
+    6px 6px 12px var(--neu-shadow-outer-dark),
+    -4px -4px 10px var(--neu-light);
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.15s ease,
+    color 0.2s ease;
+  cursor: pointer;
+}
+
+.neu-press-link--research:hover {
+  box-shadow:
+    8px 8px 16px var(--neu-shadow-outer-dark),
+    -6px -6px 14px var(--neu-light);
+}
+
+.neu-press-link--research:active {
+  transform: scale(0.985);
+  box-shadow:
+    inset 4px 4px 8px var(--neu-shadow-outer-dark),
+    inset -3px -3px 6px var(--neu-light);
+}
+
+.neu-press-link--research:focus-visible {
+  outline: 2px solid rgba(var(--accent), 0.55);
+  outline-offset: 3px;
+}
+
+.dark .neu-press-link--research {
+  box-shadow:
+    6px 6px 12px rgba(0, 0, 0, 0.45),
+    -4px -4px 10px rgba(255, 255, 255, 0.08);
+}
+
+.dark .neu-press-link--research:hover {
+  box-shadow:
+    8px 8px 16px rgba(0, 0, 0, 0.5),
+    -6px -6px 14px rgba(255, 255, 255, 0.1);
+}
+
+.dark .neu-press-link--research:active {
+  box-shadow:
+    inset 4px 4px 8px rgba(0, 0, 0, 0.5),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.06);
+}
+
+/* Reset inner article styles — let the outer link card own all visuals */
+.neu-press-link--research .section-item {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Research card layout: body left, badge right */
+.neu-press-link--research .research-article {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.neu-press-link--research .research-article__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.neu-press-link--research .research-article__body h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.neu-press-link--research .item-duration {
+  color: var(--body-color);
+  font-size: 0.9rem;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 1.5;
+}
+
+/* Flat venue badge — no raised shadow */
+.neu-press-link--research .research-venue-badge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: var(--neu-base);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: rgba(var(--accent), 0.9);
+  box-shadow:
+    inset 3px 3px 6px var(--neu-shadow-inset-dark),
+    inset -3px -3px 6px var(--neu-shadow-inset-light);
+}
+
+.text-accent {
+  color: rgba(var(--accent), 0.95);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .neu-press-link--research .research-article {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
+
+/* NeuPressLink variant="social" — circular icon links (e.g. About `ul.hero-social-links`) */
+
+.neu-press-link--social {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--neu-base);
+  text-decoration: none;
+  color: var(--subheading-color);
+  box-shadow:
+    0 -5px 8px var(--neu-light),
+    0 3px 12px var(--neu-shadow-outer-dark);
+  transition:
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.neu-press-link--social:focus-visible {
+  outline: 2px solid rgba(var(--accent), 0.55);
+  outline-offset: 3px;
+}
+
+.neu-press-link--social:hover {
+  color: rgba(var(--accent), 0.95);
+}
+
+.neu-press-link--social:active {
+  transform: scale(0.97);
+  box-shadow:
+    inset 0 -4px 4px var(--neu-light),
+    inset 0 2px 6px var(--neu-shadow-outer-dark);
+}
+
+.neu-press-link__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.neu-press-link__icon svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  color: currentColor;
+}
+
+.neu-press-link__icon--large svg {
+  width: 26px;
+  height: 26px;
+}
+
+.neu-press-link__icon svg,
+.neu-press-link__icon svg *,
+.neu-press-link__icon path,
+.neu-press-link__icon g {
+  fill: currentColor !important;
+  stroke: none !important;
+}
+
+.dark .neu-press-link--social {
+  box-shadow:
+    0 -4px 8px rgba(255, 255, 255, 0.1),
+    0 3px 12px rgba(0, 0, 0, 0.45);
+}
+
+.dark .neu-press-link--social:hover {
+  color: rgb(var(--accent));
+}
+
+.dark .neu-press-link--social:active {
+  box-shadow:
+    inset 0 -4px 4px rgba(255, 255, 255, 0.08),
+    inset 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 720px) {
+  .neu-press-link--social {
+    width: 44px;
+    height: 44px;
+  }
+
+  .neu-press-link__icon svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .neu-press-link__icon--large svg {
+    width: 22px;
+    height: 22px;
+  }
+}

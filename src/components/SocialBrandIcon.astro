@@ -1,0 +1,14 @@
+---
+import { SOCIAL_BRAND_PATHS, type SocialBrand } from "./social-brand-paths";
+
+interface Props {
+	brand: SocialBrand;
+}
+
+const { brand } = Astro.props;
+const d = SOCIAL_BRAND_PATHS[brand];
+---
+
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+	<path fill="currentColor" d={d} />
+</svg>

@@ -15,7 +15,7 @@ body {
     height: 100%;
     width: 100%;
     position: relative;
-    background-image: url('/path-to-your-image.jpg');
+    background-image: none;
     background-size: cover;
     background-position: center;
     color: white;

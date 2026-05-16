@@ -1,76 +1,43 @@
-# Personal Photo Blog
+# MyBlog
 
-A modern, responsive photo blog built with React, featuring masonry layout and lazy loading for optimal performance.
+Personal site built with **Astro 5**, **React**, and **Tailwind**, including project showcases (Markdown + content collections), photography (plog), and SEO metadata.
 
-## 🌟 Features
+## Tech stack
 
-- Masonry grid layout for beautiful photo arrangements
-- Lazy loading images for better performance
-- WebP image support with fallback
-- Photo grouping and filtering
-- Responsive design
-- Modern image optimization
+- Astro 5 (static output, sitemap)
+- React islands (photo stream, lightbox, color bar)
+- Tailwind CSS
+- Content collections with `src/content.config.ts` and local images under `src/content/projects/`
 
-## 🛠 Tech Stack
+## Routes
 
-- React
-- Masonry Layout
-- Vanilla-LazyLoad
-- ImagesLoaded
-- Nano Stores for state management
+| Path | Description |
+|------|-------------|
+| `/` | Home |
+| `/blog` | Blog placeholder |
+| `/projects` | Project list |
+| `/projects/[id]` | Project detail (from Markdown frontmatter `id`) |
+| `/plog` | Photography landing |
+| `/plog/content` | Photo grid |
+| `/about` | About |
+| `/contact` | Contact |
 
-## 🚀 Getting Started
+Production site URL is configured in `astro.config.mjs` as `site` (used by the sitemap).
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/MyBlog.git
-cd MyBlog
-```
+## Getting started
 
-2. Install dependencies:
 ```bash
 npm install
-```
-
-3. Start the development server:
-```bash
 npm run dev
+npm run build
+npm run preview
 ```
 
-## 📸 Adding Photos
+## Images
 
-1. Place your photos in the `src/images` directory
-2. Update `src/data/photos.json` with your photo information:
-```json
-{
-  "photoGroups": {
-    "group-name": [
-      {
-        "src": "/path/to/image.webp",
-        "alt": "Image description",
-        "caption": "Optional caption",
-        "date": "2023-12-25"
-      }
-    ]
-  }
-}
-```
+- **Public URLs** (e.g. `/images/avatar.jpg`, plog assets): place files under `public/` so they are served as-is.
+- **Project thumbnails** referenced in Markdown (e.g. `thumbnail: "./docmmir_illustrate.png"`): store image files next to the `.md` in `src/content/projects/`; Astro will validate them via the collection schema and optimize them with `astro:assets` where used.
 
-## 🔧 Configuration
+## License
 
-- Image lazy loading threshold can be adjusted in `PhotoStream.jsx`
-- Masonry grid settings can be modified in `PhotoStream.jsx`
-
-## 📱 Browser Support
-
-- Modern browsers (Chrome, Firefox, Safari, Edge)
-- WebP support with fallback to original formats
-- Responsive design for mobile and desktop
-
-## 📄 License
-
-MIT License - feel free to use this project for your own photo blog!
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+MIT

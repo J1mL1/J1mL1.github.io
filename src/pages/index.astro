@@ -1,108 +1,367 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import NeumorphicCard from '../components/NeumorphicCard.astro';
-import '../styles/main.css';
+import Layout from "../layouts/Layout.astro";
+import NeumorphicCard from "../components/NeumorphicCard.astro";
+import NeuPressLink from "../components/NeuPressLink.astro";
+import SocialBrandIcon from "../components/SocialBrandIcon.astro";
+import "../styles/main.css";
+import "../styles/pages/about.css";
+import { Image } from "astro:assets";
+import avatarImage from "../assets/avatar.jpg";
 
-const pageTitle = "Zirui Li | AI Research, Multimodal LLM Projects & Photography";
-const pageDescription = "Explore Zirui Li's AI research, multimodal LLM projects, and photography portfolio focused on NLP and model interpretability.";
+const pageTitle = "Zirui Li | Computer Science Ph.D candidate at HITSZ";
+const pageDescription = "Learn about Zirui Li, a Computer Science Ph.D candidate at HITSZ, exploring multimodal large language models, interpretability, and AI reasoning.";
 const pageKeywords = [
     "Zirui Li",
-    "AI research",
-    "multimodal LLM projects",
+    "Jim Li",
+    "Li Zirui",
+    "multimodal LLM researcher",
     "NLP PhD student",
-    "model interpretability",
-    "photography portfolio",
+    "AI interpretability",
 ];
 const siteOrigin = Astro.site ? Astro.site.origin : "https://j1ml1.github.io";
 const canonicalUrl = `${siteOrigin.replace(/\/$/, "")}${Astro.url.pathname}`;
-const personSchema = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": `${canonicalUrl}#zirui-li`,
-    "name": "Zirui Li",
-    "alternateName": "Jim Li",
-    "url": canonicalUrl,
-    "image": `${siteOrigin}/images/avatar.jpg`,
-    "jobTitle": "Ph.D candidate in Computer Science",
-    "affiliation": {
-        "@type": "CollegeOrUniversity",
-        "name": "Harbin Institute of Technology, Shenzhen"
-    },
-    "description": pageDescription,
-    "worksFor": {
-        "@type": "Organization",
-        "name": "Harbin Institute of Technology, Shenzhen"
-    },
-    "knowsAbout": [
-        "multimodal large language models",
-        "natural language processing",
-        "LLM interpretability",
-        "LLM reasoning",
-        "AI research"
-    ],
-    "sameAs": [
-        "https://linkedin.com/in/zirui-li-jim",
-        "https://github.com/J1mL1",
-        "https://huggingface.co/Lord-Jim",
-        "https://www.instagram.com/lord_j1m/"
-    ],
-    "mainEntityOfPage": {
+const structuredData = [
+    {
+        "@context": "https://schema.org",
         "@type": "WebPage",
-        "@id": canonicalUrl
+        "name": pageTitle,
+        "description": pageDescription,
+        "url": canonicalUrl,
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": canonicalUrl
+                }
+            ]
+        },
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Zirui Li",
+            "alternateName": "Jim Li",
+            "url": canonicalUrl,
+            "image": `${siteOrigin}/images/avatar.jpg`,
+            "jobTitle": "Ph.D candidate in Computer Science",
+            "affiliation": {
+                "@type": "CollegeOrUniversity",
+                "name": "Harbin Institute of Technology, Shenzhen"
+            },
+            "email": "mailto:zirui_li_0806@outlook.com",
+            "sameAs": [
+                "https://linkedin.com/in/zirui-li-jim",
+                "https://github.com/J1mL1",
+                "https://huggingface.co/Lord-Jim",
+                "https://www.instagram.com/lord_j1m/"
+            ]
+        }
     }
-};
+];
+
+const heroImage = avatarImage;
+const heroImageAspect = heroImage.width / heroImage.height;
 ---
 
 <Layout
     title={pageTitle}
     description={pageDescription}
     keywords={pageKeywords}
+    structuredData={structuredData}
     ogImage="/images/avatar.jpg"
-    structuredData={personSchema}
+    ogType="profile"
 >
-    <div class="layout-stack layout-stack--lg">
-        <NeumorphicCard class="mb-8">
-            <h1 class="page-heading text-center">Zirui Li's <span class="text-gradient">Internet corner</span></h1>
-            <p class="page-subheading text-center">
-                I am <strong>Zirui Li</strong> (you can also call me <strong>Jim</strong>), a computer science PhD candidate exploring multimodal large language models, NLP interpretability, and creative storytelling through photography. Dive into my latest AI research, hands-on projects, and visual work.
-            </p>
+    <div class="about-container layout-stack">
+        <NeumorphicCard class="about-card hero-card">
+            <section class="hero">
+                <div class="hero-profile">
+                    <div class="hero-lead">
+                        <p class="hero-kicker">Hello, I'm</p>
+                        <h1 class="hero-name"><span class="text-gradient">Zirui Li 李梓睿</span></h1>
+                        <p class="hero-role">
+                            I am a first year Ph.D student in Computer Science at Harbin Institute of Technology, Shenzhen, supervised by <a class="inline-link" href="https://goodbai-nlp.github.io/" target="_blank" rel="noopener noreferrer">Prof. Xuefeng Bai</a> and <a class="inline-link" href="https://chenkehai.github.io/" target="_blank" rel="noopener noreferrer">Prof. Kehai Chen</a>.
+                            My current research interests include LLM reasoning, interpretability, and Latent Chain-of-Thought.
+                        </p>
+                    </div>
+                    <div class="hero-badges">
+                        <span class="hero-badge">Natural Language Processing</span>
+                        <span class="hero-badge">LLM reasoning</span>
+                        <span class="hero-badge">Latent Chain-of-Thought</span>
+                        <span class="hero-badge">LLM interpretability</span>
+                        <span class="hero-badge">Multimodal LLM</span>
+                    </div>
+                    <div class="hero-meta">
+                        <div class="hero-meta-item hero-meta-item--location">
+                            <span class="meta-label">Location</span>
+                            <span class="meta-value">Shenzhen, China</span>
+                        </div>
+                        <div class="hero-meta-item hero-meta-item--email">
+                            <span class="meta-label">Email</span>
+                            <span class="meta-value">
+                                zirui[dot]li[at]stu[dot]hit[dot]edu[dot]cn
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-pane">
+                    <figure class="hero-avatar" style={`--hero-img-ar: ${heroImageAspect};`}>
+                        <Image
+                            src={heroImage}
+                            alt="Portrait of Zirui Li at Park Güell, Barcelona"
+                            class="hero-avatar-image"
+                            loading="eager"
+                            fetchpriority="high"
+                            decoding="async"
+                        />
+                    </figure>
+                </div>
+                        <ul class="hero-social-links hero-social-links--hero-row" role="list">
+                        <li>
+                            <NeuPressLink
+                                variant="social"
+                                href="https://huggingface.co/Lord-Jim"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Hugging Face"
+                            >
+                                <SocialBrandIcon brand="huggingface" />
+                            </NeuPressLink>
+                        </li>
+                        <li>
+                            <NeuPressLink
+                                variant="social"
+                                href="https://linkedin.com/in/zirui-li-jim"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="LinkedIn"
+                            >
+                                <SocialBrandIcon brand="linkedin" />
+                            </NeuPressLink>
+                        </li>
+                        <li>
+                            <NeuPressLink
+                                variant="social"
+                                href="https://github.com/J1mL1"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="GitHub"
+                            >
+                                <SocialBrandIcon brand="github" />
+                            </NeuPressLink>
+                        </li>
+                        <li>
+                            <NeuPressLink
+                                variant="social"
+                                href="https://www.instagram.com/lord_j1m/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Instagram"
+                            >
+                                <SocialBrandIcon brand="instagram" />
+                            </NeuPressLink>
+                        </li>
+                </ul>
+            </section>
         </NeumorphicCard>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <NeumorphicCard class="neu-hover-inset-sm transition-all duration-200">
-                <a href="/blog" class="block link-plain">
-                    <h2 class="card-title">Tech Blog <span class="card-arrow">→</span></h2>
-                    <p class="card-description">Sharing programming experience, study notes and technical insights</p>
-                </a>
-            </NeumorphicCard>
+        <NeumorphicCard class="about-card about-card--research">
+            <section class="section-block">
+                <header class="section-header">
+                    <h2>Research</h2>
+                </header>
+                <div class="research-grid">
+                    <NeuPressLink
+                        variant="research"
+                        href="https://aclanthology.org/2025.findings-emnlp.705/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="research-grid__item"
+                    >
+                        <article class="section-item research-article">
+                            <div class="research-article__body">
+                                <h3>DocMMIR: A Framework for Document Multi-modal Information Retrieval</h3>
+                                <span class="item-duration"><span class="text-accent">Zirui Li</span>, Siwei Wu, Yizhi Li, Xingyu Wang, Yi Zhou, Chenghua Lin</span>
+                            </div>
+                            <span class="research-venue-badge">EMNLP 2025 Findings</span>
+                        </article>
+                    </NeuPressLink>
+                    <NeuPressLink
+                        variant="research"
+                        href="https://arxiv.org/abs/2602.08783"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="research-grid__item"
+                    >
+                        <article class="section-item research-article">
+                            <div class="research-article__body">
+                                <h3>Dynamics Within Latent Chain-of-Thought</h3>
+                                <span class="item-duration"><span class="text-accent">Zirui Li</span>, Xuefeng Bai, Kehai Chen, Yizhi Li, Jian Yang, Chenghua Lin, Min Zhang</span>
+                            </div>
+                            <span class="research-venue-badge">ICML 2026</span>
+                        </article>
+                    </NeuPressLink>
+                </div>
+            </section>
+        </NeumorphicCard>
 
-            <NeumorphicCard class="neu-hover-inset-sm transition-all duration-200">
-                <a href="/plog" class="block link-plain">
-                    <h2 class="card-title">Photography Journal <span class="card-arrow">→</span></h2>
-                    <p class="card-description">Capturing life moments, sharing photography collections 📸</p>
-                </a>
-            </NeumorphicCard>
+        <script is:inline>
+            (function () {
+                var mq = window.matchMedia("(min-width: 1025px)");
+                function syncHeroPaneToProfile() {
+                    var hero = document.querySelector(".about-container .hero");
+                    var profile = document.querySelector(".about-container .hero-profile");
+                    if (!hero || !profile) return;
+                    if (!mq.matches) {
+                        hero.style.removeProperty("--hero-profile-height");
+                        return;
+                    }
+                    hero.style.setProperty("--hero-profile-height", profile.offsetHeight + "px");
+                }
+                var profile = document.querySelector(".about-container .hero-profile");
+                if (profile && typeof ResizeObserver !== "undefined") {
+                    new ResizeObserver(syncHeroPaneToProfile).observe(profile);
+                }
+                mq.addEventListener("change", syncHeroPaneToProfile);
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", syncHeroPaneToProfile, { once: true });
+                }
+                syncHeroPaneToProfile();
+            })();
+        </script>
 
-            <NeumorphicCard class="neu-hover-inset-sm transition-all duration-200">
-                <a href="/projects" class="block link-plain">
-                    <h2 class="card-title">Project Showcase <span class="card-arrow">→</span></h2>
-                    <p class="card-description">Documenting interesting projects I've participated in</p>
-                </a>
-            </NeumorphicCard>
+        <div class="about-columns">
+            <div class="about-column">
+                <NeumorphicCard class="about-card">
+                    <section class="section-block">
+                        <header class="section-header">
+                            <h2>Education</h2>
+                        </header>
+                    <article class="section-item">
+                        <div class="item-heading">
+                            <h3>Harbin Institute of Technology, Shenzhen</h3>
+                            <span class="item-duration">Sep 2025 - present</span>
+                        </div>
+                        <p class="item-role">P.hD in Computer Science</p>
+                        <div class="hero-badges">
+                            <span class="hero-badge">Natural Language Processing</span>
+                            <span class="hero-badge">Machine translation</span>
+                            <span class="hero-badge">LLM reasoning</span>
+                            <span class="hero-badge">LLM interpretability</span>
+                        </div>
+                    </article>
+                    <article class="section-item">
+                        <div class="item-heading">
+                            <h3>University of Manchester</h3>
+                            <span class="item-duration">Sep 2021 - Jun 2025</span>
+                        </div>
+                        <p class="item-role">M.Eng Computer Science (2:1)</p>
+                        <div class="hero-badges">
+                            <span class="hero-badge">Natural Language Understanding</span>
+                            <span class="hero-badge">Database Design</span>
+                            <span class="hero-badge">Software Engineering</span>
+                            <span class="hero-badge">Game Theory</span>
+                            <span class="hero-badge">Algorithms</span>
+                            <span class="hero-badge">Python</span>
+                            <span class="hero-badge">PyTorch</span>
+                            <span class="hero-badge">Java</span>
+                            <span class="hero-badge">JavaScript</span>
+                            <span class="hero-badge">SQL</span>
+                            <span class="hero-badge">Flask</span>
+                            <span class="hero-badge">Django</span>
+                            <span class="hero-badge">Linux</span>
+                        </div>
+                    </article>
+                    </section>
+                </NeumorphicCard>
 
-            <NeumorphicCard class="neu-hover-inset-sm transition-all duration-200">
-                <a href="/about" class="block link-plain">
-                    <h2 class="card-title">About Me <span class="card-arrow">→</span></h2>
-                    <p class="card-description">Learn more about my story and experiences</p>
-                </a>
-            </NeumorphicCard>
+                <!-- Projects card (hidden)
+                <NeumorphicCard class="about-card">
+                    <section class="section-block">
+                        <header class="section-header">
+                            <h2>Projects</h2>
+                            <p class="section-subtitle">Selected builds that flex analytical and product muscles.</p>
+                        </header>
+                    <article class="section-item">
+                        <div class="item-heading">
+                            <h3>Social Network Analysis</h3>
+                            <span class="item-duration">Sep 2023 - Apr 2024</span>
+                        </div>
+                        <ul class="item-list">
+                            <li>Modelled networks with 15k+ nodes using NetworkX to surface influence through centrality metrics.</li>
+                            <li>Benchmarked link prediction algorithms including Common Neighbours, Jaccard, graph autoencoders, and node2vec.</li>
+                        </ul>
+                    </article>
+                    <article class="section-item">
+                        <div class="item-heading">
+                            <h3>Eventlite</h3>
+                            <span class="item-duration">Jan 2023 - Apr 2023</span>
+                        </div>
+                        <ul class="item-list">
+                            <li>Delivered a Spring Boot event platform with registration, creation workflows, and robust MVC testing.</li>
+                        </ul>
+                    </article>
+                    </section>
+                </NeumorphicCard>
+                -->
 
-            <NeumorphicCard class="neu-hover-inset-sm transition-all duration-200">
-                <a href="/contact" class="block link-plain">
-                    <h2 class="card-title">Contact Me <span class="card-arrow">→</span></h2>
-                    <p class="card-description">Feel free to reach out with any questions or ideas 👋</p>
-                </a>
+                <NeumorphicCard class="about-card">
+                    <section class="section-block">
+                        <header class="section-header">
+                            <h2>Beyond Code</h2>
+                            <p class="section-subtitle">Photography keeps my design instincts sharp.</p>
+                        </header>
+                        <p class="item-text">
+                            I tell stories through lenses, experimenting with composition and post-processing to uncover new
+                            perspectives. Visual storytelling feeds directly into the way I craft thoughtful, human products.
+                        </p>
+                        <p class="item-text">
+                            Browse my
+                            <a class="inline-link" href="/plog">photography journal</a>
+                            for curated sets blending light, color, and narrative.
+                        </p>
+                    </section>
+                </NeumorphicCard>
+            </div>
+
+            <div class="about-column">
+                <NeumorphicCard class="about-card">
+                    <section class="section-block">
+                        <header class="section-header">
+                            <h2>Experience</h2>
+                        </header>
+                    <article class="section-item">
+                        <div class="item-heading">
+                            <h3>University of Manchester</h3>
+                            <span class="item-duration">Jun 2024 - Present</span>
+                        </div>
+                        <p class="item-role">Research Intern - Chenghua Lin's research group</p>
+                        <ul class="item-list">
+                            <li>Designed DocMMIR, a document multimodal retrieval benchmark that unifies Wikipedia-scale imagery with text.</li>
+                            <li>Built PyTorch Lightning pipelines and fine-tuned CLIP, BLIP2, SIGLIP and more MLLMs for cross-modal alignment.</li>
+                            <li>Preprocessed 300k+ image-text samples and crafted contrastive objectives for query-to-document mapping.</li>
+                            <li>Accepted for EMNLP2025 findings as the first author</li>
+                        </ul>
+                    </article>
+                    <article class="section-item">
+                        <div class="item-heading">
+                            <h3>AutoBizLine Inc.</h3>
+                            <span class="item-duration">Aug 2023 - Sep 2024</span>
+                        </div>
+                        <p class="item-role">Full-stack Engineer - MySecondLine</p>
+                        <ul class="item-list">
+                            <li>Shipped 8k+ lines across a Django + JavaScript product, modernising messaging flows and dashboards.</li>
+                            <li>Automated regulatory review pipelines with compliance tooling tailored to business rules.</li>
+                            <li>Implemented geo-aware tax computation supporting 200+ scenarios to streamline onboarding.</li>
+                        </ul>
+                    </article>
+                </section>
             </NeumorphicCard>
+            </div>
+        </div>
+
+        <div class="visitor-map-container">
+          <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?cl=272727&w=300&t=tt&d=Kar4GGHZHp1tuvgiXRhbTlC6UdGZgcHgpDOQYeFZkb4&co=ddeaf3&cmo=b853ff&cmn=4bbad7&ct=1d1d1d"></script>
         </div>
     </div>
 </Layout>

@@ -6,11 +6,11 @@
 
 /* Component styles */
 @import './components/card.css';
-@import './components/instructions.css';
 @import './components/navigation.css';
 @import './components/theme-toggle.css';
 @import './components/colorbar.css';
 @import './components/neumorphism.css';
+@import './components/neu-press-link.css';
 
 /* Page-specific styles */
 @import './pages/index.css';
