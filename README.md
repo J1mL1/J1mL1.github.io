@@ -19,7 +19,6 @@ Personal site built with **Astro 5**, **React**, and **Tailwind**, including pro
 | `/projects/[id]` | Project detail (from Markdown frontmatter `id`) |
 | `/plog` | Photography landing |
 | `/plog/content` | Photo grid |
-| `/about` | About |
 | `/contact` | Contact |
 
 Production site URL is configured in `astro.config.mjs` as `site` (used by the sitemap).

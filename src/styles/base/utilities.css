@@ -20,6 +20,11 @@ input::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
 
+/* Used on `<main>` in Layout.astro (not a default Tailwind scale step) */
+.flex-3 {
+    flex: 3 1 0%;
+}
+
 .layout-stack {
     display: flex;
     flex-direction: column;
