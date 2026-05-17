@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@config "../../tailwind.config.cjs";
+
 /* Base styles */
 @import './base/variables.css';
 @import './base/layout.css';
