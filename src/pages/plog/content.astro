@@ -1,13 +1,45 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import NeumorphicCard from "../../components/NeumorphicCard.astro";
+import "../../styles/main.css";
+
+const pageTitle = "Photo Stream | Jim Li Coming Soon";
+const pageDescription = "Jim Li's photo stream is coming soon. Stay tuned for curated photography collections.";
+---
+
+<Layout
+    title={pageTitle}
+    description={pageDescription}
+    keywords={["Jim Li photography", "photo stream", "coming soon"]}
+    ogType="website"
+>
+    <div class="layout-stack layout-stack--lg">
+        <NeumorphicCard class="text-center">
+            <h1 class="page-heading">Photo Stream Coming Soon</h1>
+            <p class="page-subheading">
+                I'm preparing a curated photo stream. Check back soon for a visual journey through my lens.
+            </p>
+        </NeumorphicCard>
+    </div>
+</Layout>
+
+<!-- ORIGINAL PHOTO STREAM CONTENT (preserved for re-enablement)
+---
+import Layout from "../../layouts/Layout.astro";
 import PhotoStream from '../../components/PhotoStream';
 import PhotoSidebar from '../../components/PhotoSidebar.astro';
 import '../../styles/pages/plog.css';
 ---
 
-<Layout title="Photo Stream">
+<Layout
+    title="Photo Stream | Jim Li Photography"
+    description="Browse Jim Li's photography stream — landscapes, street scenes, and visual stories captured across the UK and beyond."
+    keywords={["Jim Li photography", "photo stream", "landscape photography", "street photography", "UK photography"]}
+    ogType="website"
+>
     <div class="photo-page">
         <PhotoSidebar/>
         <PhotoStream client:only="react"/>
     </div>
 </Layout>
+-->

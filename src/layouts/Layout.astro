@@ -64,17 +64,20 @@ const serializedStructuredData = structuredData
 		{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<meta property="og:site_name" content="Zirui Li – Academic Portfolio" />
+		<meta property="og:locale" content="en_US" />
 		<meta property="og:title" content={title} />
 		{description && <meta property="og:description" content={description} />}
 		{canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
 		<meta property="og:type" content={ogType} />
 		{resolvedOgImage && <meta property="og:image" content={resolvedOgImage} />}
+		{resolvedOgImage && <meta property="og:image:alt" content={title} />}
 		<meta name="twitter:card" content={twitterCard} />
+		<meta name="twitter:site" content={twitterSite ?? '@lord_j1m'} />
+		<meta name="twitter:creator" content={twitterCreator ?? '@lord_j1m'} />
 		{title && <meta name="twitter:title" content={title} />}
 		{description && <meta name="twitter:description" content={description} />}
 		{resolvedOgImage && <meta name="twitter:image" content={resolvedOgImage} />}
-		{twitterSite && <meta name="twitter:site" content={twitterSite} />}
-		{twitterCreator && <meta name="twitter:creator" content={twitterCreator} />}
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link

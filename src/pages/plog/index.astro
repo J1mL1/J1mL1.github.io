@@ -1,4 +1,30 @@
 ---
+import Layout from "../../layouts/Layout.astro";
+import NeumorphicCard from "../../components/NeumorphicCard.astro";
+import "../../styles/main.css";
+
+const pageTitle = "Photography | Jim Li Coming Soon";
+const pageDescription = "Jim Li's photography portfolio is coming soon. Stay tuned for landscapes, street scenes, and visual stories.";
+---
+
+<Layout
+    title={pageTitle}
+    description={pageDescription}
+    keywords={["Jim Li photography", "photography portfolio", "coming soon"]}
+    ogType="website"
+>
+    <div class="layout-stack layout-stack--lg">
+        <NeumorphicCard class="text-center">
+            <h1 class="page-heading">Photography Coming Soon</h1>
+            <p class="page-subheading">
+                I'm curating a collection of my favourite shots — landscapes, street scenes, and visual stories from my travels. Stay tuned!
+            </p>
+        </NeumorphicCard>
+    </div>
+</Layout>
+
+<!-- ORIGINAL PLOG LANDING PAGE CONTENT (preserved for re-enablement)
+---
 import '../../styles/pages/plog-enter.css';
 import { getRandomPhoto } from '../../stores/randomPhoto';
 
@@ -9,7 +35,42 @@ const randomPhoto = getRandomPhoto();
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Photography - Jim Li</title>
+    <title>Photography | Jim Li</title>
+    <meta name="description" content="Jim Li's photography portfolio — landscapes, street scenes, and visual stories captured across the UK and beyond." />
+    <meta name="author" content="Zirui Li" />
+    <meta name="keywords" content="Jim Li photography, landscape photography, street photography, UK photography, visual storytelling" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://j1ml1.github.io/plog/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:site_name" content="Zirui Li – Academic Portfolio" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Photography | Jim Li" />
+    <meta property="og:description" content="Jim Li's photography portfolio — landscapes, street scenes, and visual stories captured across the UK and beyond." />
+    <meta property="og:url" content="https://j1ml1.github.io/plog/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://j1ml1.github.io/images/avatar.jpg" />
+    <meta property="og:image:alt" content="Photography | Jim Li" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lord_j1m" />
+    <meta name="twitter:creator" content="@lord_j1m" />
+    <meta name="twitter:title" content="Photography | Jim Li" />
+    <meta name="twitter:description" content="Jim Li's photography portfolio — landscapes, street scenes, and visual stories captured across the UK and beyond." />
+    <meta name="twitter:image" content="https://j1ml1.github.io/images/avatar.jpg" />
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Photography | Jim Li",
+        "description": "Jim Li's photography portfolio — landscapes, street scenes, and visual stories captured across the UK and beyond.",
+        "url": "https://j1ml1.github.io/plog/",
+        "author": {
+            "@type": "Person",
+            "name": "Zirui Li",
+            "alternateName": "Jim Li",
+            "url": "https://j1ml1.github.io/"
+        }
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -26,3 +87,4 @@ const randomPhoto = getRandomPhoto();
     </div>
 </body>
 </html>
+-->

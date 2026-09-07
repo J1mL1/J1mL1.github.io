@@ -98,9 +98,16 @@
   word-break: break-word;
 }
 
+.neu-press-link--research .research-venue {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+}
+
 /* Flat venue badge — no raised shadow */
 .neu-press-link--research .research-venue-badge {
-  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   padding: 0.4rem 0.9rem;
@@ -115,6 +122,14 @@
     inset -3px -3px 6px var(--neu-shadow-inset-light);
 }
 
+.neu-press-link--research .research-venue-place {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--subheading-color);
+  white-space: nowrap;
+}
+
 .text-accent {
   color: rgba(var(--accent), 0.95);
   font-weight: 600;
@@ -125,6 +140,10 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
+  }
+
+  .neu-press-link--research .research-venue {
+    align-items: flex-start;
   }
 }
 

@@ -5,6 +5,13 @@ import "../styles/main.css";
 
 const pageTitle = "Contact Zirui Li";
 const pageDescription = "Reach out to Zirui Li for collaborations on multimodal LLM research, NLP projects, or photography conversations.";
+const pageKeywords = [
+    "contact Zirui Li",
+    "Zirui Li email",
+    "NLP collaboration",
+    "multimodal LLM research",
+    "HITSZ PhD",
+];
 const siteOrigin = Astro.site ? Astro.site.origin : "https://j1ml1.github.io";
 const canonicalUrl = `${siteOrigin.replace(/\/$/, "")}${Astro.url.pathname}`;
 const structuredData = {
@@ -29,6 +36,7 @@ const structuredData = {
 <Layout
     title={pageTitle}
     description={pageDescription}
+    keywords={pageKeywords}
     structuredData={structuredData}
     ogImage="/images/avatar.jpg"
     ogType="profile"

@@ -11,6 +11,11 @@ export default defineConfig({
   },
   integrations: [
     react(),
-    sitemap()
+    sitemap({
+      changefreq: 'monthly',
+      priority: 0.7,
+      lastmod: new Date(),
+      filter: (page) => !page.includes('/plog'),
+    })
   ],
 });

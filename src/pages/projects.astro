@@ -36,8 +36,32 @@ const projects = projectsData.map((entry) => {
 const tagKeywords = Array.from(new Set(projectsData.flatMap((project) => project.data.tags)));
 
 const combinedKeywords = Array.from(new Set([...pageKeywords, ...tagKeywords]));
+
+const siteOrigin = Astro.site ? Astro.site.origin : "https://j1ml1.github.io";
+const canonicalUrl = `${siteOrigin.replace(/\/$/, "")}${Astro.url.pathname}`;
+const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": pageTitle,
+    "description": pageDescription,
+    "url": canonicalUrl,
+    "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": projects.map((p, i) => ({
+            "@type": "ListItem",
+            "position": i + 1,
+            "name": p.entry.data.title,
+            "url": `${siteOrigin}${p.href}`,
+        })),
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Zirui Li",
+        "url": siteOrigin,
+    },
+};
 ---
-<Layout title={pageTitle} description={pageDescription} keywords={combinedKeywords}>
+<Layout title={pageTitle} description={pageDescription} keywords={combinedKeywords} structuredData={structuredData} ogImage="/images/avatar.jpg" ogType="website">
     <div class="projects-layout layout-stack layout-stack--lg">
         <NeumorphicCard class="projects-hero text-center mb-8">
             <h1 class="page-heading">Zirui Li's <span class="text-gradient">Project Portfolio</span></h1>
