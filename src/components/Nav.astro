@@ -55,3 +55,46 @@ const navItems: NavItem[] = [
 		</div>
 	</nav>
 </header>
+
+<script is:inline>
+	(function () {
+		var HOLD_MS = 350;
+		var buttons = document.querySelectorAll('.site-header .nav-link');
+
+		function clearAllPressed() {
+			buttons.forEach(function (b) { b.classList.remove('pressed'); });
+		}
+
+		function onDown(e) {
+			var btn = e.currentTarget;
+			if (btn.classList.contains('active')) return;
+			clearAllPressed();
+			btn.classList.add('pressed');
+		}
+		function onUp(e) {
+			var btn = e.currentTarget;
+			if (btn.classList.contains('active')) return;
+			var href = btn.getAttribute('href');
+			setTimeout(function () {
+				btn.classList.remove('pressed');
+			}, HOLD_MS);
+			if (href) {
+				e.preventDefault();
+				setTimeout(function () {
+					window.location.href = href;
+				}, HOLD_MS);
+			}
+		}
+		function onCancel(e) {
+			e.currentTarget.classList.remove('pressed');
+		}
+		buttons.forEach(function (btn) {
+			btn.addEventListener('mousedown', onDown);
+			btn.addEventListener('mouseup', onUp);
+			btn.addEventListener('mouseleave', onCancel);
+			btn.addEventListener('touchstart', onDown, { passive: true });
+			btn.addEventListener('touchend', onUp);
+			btn.addEventListener('touchcancel', onCancel);
+		});
+	})();
+</script>
