@@ -5,6 +5,13 @@ import '../../styles/main.css';
 
 const pageTitle = "Zirui Li Blog | Coming Soon";
 const pageDescription = "Explore Zirui Li's upcoming articles on multimodal LLMs, NLP research discoveries, and technical deep dives.";
+const pageKeywords = [
+    "Zirui Li blog",
+    "NLP research blog",
+    "multimodal LLM articles",
+    "AI research insights",
+    "LLM reasoning blog",
+];
 const siteOrigin = Astro.site ? Astro.site.origin : "https://j1ml1.github.io";
 const canonicalUrl = `${siteOrigin.replace(/\/$/, "")}${Astro.url.pathname}`;
 const structuredData = {
@@ -23,6 +30,7 @@ const structuredData = {
 <Layout
     title={pageTitle}
     description={pageDescription}
+    keywords={pageKeywords}
     structuredData={structuredData}
     ogImage="/images/avatar.jpg"
     ogType="website"

@@ -14,9 +14,19 @@ const pageKeywords = [
     "Zirui Li",
     "Jim Li",
     "Li Zirui",
+    "李梓睿",
     "multimodal LLM researcher",
     "NLP PhD student",
     "AI interpretability",
+    "Latent Chain-of-Thought",
+    "LLM reasoning",
+    "HITSZ PhD",
+    "Harbin Institute of Technology Shenzhen",
+    "University of Manchester",
+    "ICML 2026",
+    "EMNLP 2025",
+    "DocMMIR",
+    "document multimodal retrieval",
 ];
 const siteOrigin = Astro.site ? Astro.site.origin : "https://j1ml1.github.io";
 const canonicalUrl = `${siteOrigin.replace(/\/$/, "")}${Astro.url.pathname}`;
@@ -55,8 +65,40 @@ const structuredData = [
                 "https://github.com/J1mL1",
                 "https://huggingface.co/Lord-Jim",
                 "https://www.instagram.com/lord_j1m/"
+            ],
+            "knowsAbout": [
+                "Natural Language Processing",
+                "Multimodal Large Language Models",
+                "LLM Reasoning",
+                "LLM Interpretability",
+                "Latent Chain-of-Thought",
+                "Document Multimodal Retrieval"
+            ],
+            "alumniOf": [
+                {
+                    "@type": "CollegeOrUniversity",
+                    "name": "University of Manchester"
+                }
             ]
         }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "ScholarlyArticle",
+        "name": "Dynamics Within Latent Chain-of-Thought",
+        "author": [{"@type": "Person", "name": "Zirui Li"}],
+        "datePublished": "2026",
+        "url": "https://arxiv.org/abs/2602.08783",
+        "publication": "ICML 2026"
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "ScholarlyArticle",
+        "name": "DocMMIR: A Framework for Document Multi-modal Information Retrieval",
+        "author": [{"@type": "Person", "name": "Zirui Li"}],
+        "datePublished": "2025",
+        "url": "https://aclanthology.org/2025.findings-emnlp.705/",
+        "publication": "EMNLP 2025 Findings"
     }
 ];
 
@@ -80,16 +122,18 @@ const heroImageAspect = heroImage.width / heroImage.height;
                         <p class="hero-kicker">Hello, I'm</p>
                         <h1 class="hero-name"><span class="text-gradient">Zirui Li 李梓睿</span></h1>
                         <p class="hero-role">
-                            I am a first year Ph.D student in Computer Science at Harbin Institute of Technology, Shenzhen, supervised by <a class="inline-link" href="https://goodbai-nlp.github.io/" target="_blank" rel="noopener noreferrer">Prof. Xuefeng Bai</a> and <a class="inline-link" href="https://chenkehai.github.io/" target="_blank" rel="noopener noreferrer">Prof. Kehai Chen</a>.
+                            I am a first-year Ph.D. student in Computer Science at Harbin Institute of Technology, Shenzhen, supervised by <a class="inline-link" href="https://goodbai-nlp.github.io/" target="_blank" rel="noopener noreferrer">Prof. Xuefeng Bai</a> and <a class="inline-link" href="https://chenkehai.github.io/" target="_blank" rel="noopener noreferrer">Prof. Kehai Chen</a>.
                             My current research interests include LLM reasoning, interpretability, and Latent Chain-of-Thought.
+                            Before starting my Ph.D., I was a Master's student at the University of Manchester, working with <a class="inline-link" href="https://yizhilll.github.io/" target="_blank" rel="noopener noreferrer">Yizhi Li</a> and <a class="inline-link" href="https://wusiwei0410.github.io/" target="_blank" rel="noopener noreferrer">Siwei Wu</a> in <a class="inline-link" href="https://chenghua-lin.github.io/" target="_blank" rel="noopener noreferrer">Prof. Chenghua Lin</a>'s lab, where I focused on Multimodal retrieval.
+                            I received my Bachelor's degree in Computer Science from the University of Manchester, supervised by <a class="inline-link" href="https://www.cs.man.ac.uk/~rizos/" target="_blank" rel="noopener noreferrer">Prof. Rizos Sakellariou</a>, during that period of time, I was interested in Social Network Analysis.
                         </p>
                     </div>
                     <div class="hero-badges">
                         <span class="hero-badge">Natural Language Processing</span>
-                        <span class="hero-badge">LLM reasoning</span>
+                        <span class="hero-badge">LLM efficiency reasoning</span>
                         <span class="hero-badge">Latent Chain-of-Thought</span>
                         <span class="hero-badge">LLM interpretability</span>
-                        <span class="hero-badge">Multimodal LLM</span>
+                        <span class="hero-badge">Multimodal LLMs</span>
                     </div>
                     <div class="hero-meta">
                         <div class="hero-meta-item hero-meta-item--location">
@@ -106,14 +150,16 @@ const heroImageAspect = heroImage.width / heroImage.height;
                 </div>
                 <div class="hero-pane">
                     <figure class="hero-avatar" style={`--hero-img-ar: ${heroImageAspect};`}>
-                        <Image
-                            src={heroImage}
-                            alt="Portrait of Zirui Li at Park Güell, Barcelona"
-                            class="hero-avatar-image"
-                            loading="eager"
-                            fetchpriority="high"
-                            decoding="async"
-                        />
+                        <div class="hero-avatar-photo">
+                            <Image
+                                src={heroImage}
+                                alt="Portrait of Zirui Li at Park Güell, Barcelona"
+                                class="hero-avatar-image"
+                                loading="eager"
+                                fetchpriority="high"
+                                decoding="async"
+                            />
+                        </div>
                     </figure>
                 </div>
                         <ul class="hero-social-links hero-social-links--hero-row" role="list">
@@ -172,6 +218,24 @@ const heroImageAspect = heroImage.width / heroImage.height;
                 </header>
                 <div class="research-grid">
                     <NeuPressLink
+                    variant="research"
+                    href="https://arxiv.org/abs/2602.08783"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="research-grid__item"
+                    >
+                    <article class="section-item research-article">
+                        <div class="research-article__body">
+                            <h3>Dynamics Within Latent Chain-of-Thought</h3>
+                            <span class="item-duration"><span class="text-accent">Zirui Li</span>, Xuefeng Bai, Kehai Chen, Yizhi Li, Jian Yang, Chenghua Lin, Min Zhang</span>
+                        </div>
+                        <span class="research-venue">
+                            <span class="research-venue-badge">ICML 2026</span>
+                            <span class="research-venue-place">Seoul, Korea</span>
+                        </span>
+                    </article>
+                    </NeuPressLink>
+                    <NeuPressLink
                         variant="research"
                         href="https://aclanthology.org/2025.findings-emnlp.705/"
                         target="_blank"
@@ -183,22 +247,10 @@ const heroImageAspect = heroImage.width / heroImage.height;
                                 <h3>DocMMIR: A Framework for Document Multi-modal Information Retrieval</h3>
                                 <span class="item-duration"><span class="text-accent">Zirui Li</span>, Siwei Wu, Yizhi Li, Xingyu Wang, Yi Zhou, Chenghua Lin</span>
                             </div>
-                            <span class="research-venue-badge">EMNLP 2025 Findings</span>
-                        </article>
-                    </NeuPressLink>
-                    <NeuPressLink
-                        variant="research"
-                        href="https://arxiv.org/abs/2602.08783"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="research-grid__item"
-                    >
-                        <article class="section-item research-article">
-                            <div class="research-article__body">
-                                <h3>Dynamics Within Latent Chain-of-Thought</h3>
-                                <span class="item-duration"><span class="text-accent">Zirui Li</span>, Xuefeng Bai, Kehai Chen, Yizhi Li, Jian Yang, Chenghua Lin, Min Zhang</span>
-                            </div>
-                            <span class="research-venue-badge">ICML 2026</span>
+                            <span class="research-venue">
+                                <span class="research-venue-badge">EMNLP 2025 Findings</span>
+                                <span class="research-venue-place">Suzhou, China</span>
+                            </span>
                         </article>
                     </NeuPressLink>
                 </div>
@@ -305,7 +357,7 @@ const heroImageAspect = heroImage.width / heroImage.height;
                 </NeumorphicCard>
                 -->
 
-                <NeumorphicCard class="about-card">
+                <!-- <NeumorphicCard class="about-card">
                     <section class="section-block">
                         <header class="section-header">
                             <h2>Beyond Code</h2>
@@ -314,14 +366,14 @@ const heroImageAspect = heroImage.width / heroImage.height;
                         <p class="item-text">
                             I tell stories through lenses, experimenting with composition and post-processing to uncover new
                             perspectives. Visual storytelling feeds directly into the way I craft thoughtful, human products.
-                        </p>
-                        <p class="item-text">
+                        </p> -->
+                        <!-- <p class="item-text">
                             Browse my
                             <a class="inline-link" href="/plog">photography journal</a>
                             for curated sets blending light, color, and narrative.
-                        </p>
-                    </section>
-                </NeumorphicCard>
+                        </p> -->
+                    <!-- </section>
+                </NeumorphicCard> -->
             </div>
 
             <div class="about-column">
@@ -335,7 +387,7 @@ const heroImageAspect = heroImage.width / heroImage.height;
                             <h3>University of Manchester</h3>
                             <span class="item-duration">Jun 2024 - Present</span>
                         </div>
-                        <p class="item-role">Research Intern - Chenghua Lin's research group</p>
+                        <p class="item-role">Research Intern - <a class="inline-link" href="https://chenghua-lin.github.io/" target="_blank" rel="noopener noreferrer">Prof.Chenghua Lin</a>'s research group</p>
                         <ul class="item-list">
                             <li>Designed DocMMIR, a document multimodal retrieval benchmark that unifies Wikipedia-scale imagery with text.</li>
                             <li>Built PyTorch Lightning pipelines and fine-tuned CLIP, BLIP2, SIGLIP and more MLLMs for cross-modal alignment.</li>

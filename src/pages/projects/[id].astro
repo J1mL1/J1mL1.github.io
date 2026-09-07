@@ -24,9 +24,25 @@ const bannerImage = resolveProjectThumbnail(entry.data.thumbnail);
 const pageTitle = `${entry.data.title} | Project by Zirui Li`;
 const pageDescription = entry.data.description;
 const pageKeywords = entry.data.tags;
+const siteOrigin = Astro.site ? Astro.site.origin : "https://j1ml1.github.io";
+const canonicalUrl = `${siteOrigin.replace(/\/$/, "")}${Astro.url.pathname}`;
+const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": entry.data.title,
+    "description": entry.data.description,
+    "url": canonicalUrl,
+    "datePublished": entry.data.date,
+    "author": {
+        "@type": "Person",
+        "name": "Zirui Li",
+        "url": siteOrigin,
+    },
+    "keywords": entry.data.tags.join(", "),
+};
 ---
 
-<Layout title={pageTitle} description={pageDescription} keywords={pageKeywords}>
+<Layout title={pageTitle} description={pageDescription} keywords={pageKeywords} structuredData={structuredData} ogType="article">
   <NeumorphicCard class="project-detail-card">
   <div class="project-detail-container">
     <div class="project-header">
