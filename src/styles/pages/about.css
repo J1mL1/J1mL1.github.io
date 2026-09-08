@@ -396,19 +396,12 @@
   opacity: 0.82;
 }
 
-.about-columns {
-  display: flex;
-  align-items: flex-start;
-  gap: 2.5rem;
-  width: 100%;
-}
-
-.about-column {
-  flex: 1;
-  min-width: 0;
+.about-stack {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  width: 100%;
+  min-width: 0;
 }
 
 .about-card--research {
@@ -574,12 +567,7 @@
     padding: 2rem;
   }
 
-  .about-columns {
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .about-column {
+  .about-stack {
     gap: 2rem;
   }
 
