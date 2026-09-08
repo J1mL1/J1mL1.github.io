@@ -125,15 +125,15 @@ const heroImageAspect = heroImage.width / heroImage.height;
                             I am a second-year Ph.D. student in Computer Science at Harbin Institute of Technology, Shenzhen, supervised by <a class="inline-link" href="https://goodbai-nlp.github.io/" target="_blank" rel="noopener noreferrer">Prof. Xuefeng Bai</a> and <a class="inline-link" href="https://chenkehai.github.io/" target="_blank" rel="noopener noreferrer">Prof. Kehai Chen</a>.
                             My current research interests include LLM reasoning, interpretability, and Latent Chain-of-Thought.
                             Before starting my Ph.D., I was a Master's student at the University of Manchester, working with <a class="inline-link" href="https://yizhilll.github.io/" target="_blank" rel="noopener noreferrer">Yizhi Li</a> and <a class="inline-link" href="https://wusiwei0410.github.io/" target="_blank" rel="noopener noreferrer">Siwei Wu</a> in <a class="inline-link" href="https://chenghua-lin.github.io/" target="_blank" rel="noopener noreferrer">Prof. Chenghua Lin</a>'s lab, where I focused on Multimodal retrieval.
-                            I received my Bachelor's degree in Computer Science from the University of Manchester, supervised by <a class="inline-link" href="https://www.cs.man.ac.uk/~rizos/" target="_blank" rel="noopener noreferrer">Prof. Rizos Sakellariou</a>, during that period of time, I was interested in Social Network Analysis.
+                            I also completed my Bachelor's degree in Computer Science at the University of Manchester, supervised by <a class="inline-link" href="https://www.cs.man.ac.uk/~rizos/" target="_blank" rel="noopener noreferrer">Prof. Rizos Sakellariou</a>, during that period of time, I was interested in Social Network Analysis.
                         </p>
                     </div>
                     <div class="hero-badges">
                         <span class="hero-badge">Natural Language Processing</span>
                         <span class="hero-badge">LLM efficiency reasoning</span>
                         <span class="hero-badge">Latent Chain-of-Thought</span>
+                        <span class="hero-badge">On policy distillation</span>
                         <span class="hero-badge">LLM interpretability</span>
-                        <span class="hero-badge">Multimodal LLMs</span>
                     </div>
                     <div class="hero-meta">
                         <div class="hero-meta-item hero-meta-item--location">
@@ -282,19 +282,18 @@ const heroImageAspect = heroImage.width / heroImage.height;
             })();
         </script>
 
-        <div class="about-columns">
-            <div class="about-column">
-                <NeumorphicCard class="about-card">
-                    <section class="section-block">
-                        <header class="section-header">
-                            <h2>Education</h2>
-                        </header>
+        <div class="about-stack">
+            <NeumorphicCard class="about-card">
+                <section class="section-block">
+                    <header class="section-header">
+                        <h2>Education</h2>
+                    </header>
                     <article class="section-item">
                         <div class="item-heading">
                             <h3>Harbin Institute of Technology, Shenzhen</h3>
                             <span class="item-duration">Sep 2025 - present</span>
                         </div>
-                        <p class="item-role">P.hD in Computer Science</p>
+                        <p class="item-role">Ph.D. in Computer Science</p>
                         <div class="hero-badges">
                             <span class="hero-badge">Natural Language Processing</span>
                             <span class="hero-badge">Machine translation</span>
@@ -324,68 +323,29 @@ const heroImageAspect = heroImage.width / heroImage.height;
                             <span class="hero-badge">Linux</span>
                         </div>
                     </article>
-                    </section>
-                </NeumorphicCard>
+                </section>
+            </NeumorphicCard>
 
-                <!-- Projects card (hidden)
-                <NeumorphicCard class="about-card">
-                    <section class="section-block">
-                        <header class="section-header">
-                            <h2>Projects</h2>
-                            <p class="section-subtitle">Selected builds that flex analytical and product muscles.</p>
-                        </header>
+            <NeumorphicCard class="about-card">
+                <section class="section-block">
+                    <header class="section-header">
+                        <h2>Experience</h2>
+                    </header>
                     <article class="section-item">
                         <div class="item-heading">
-                            <h3>Social Network Analysis</h3>
-                            <span class="item-duration">Sep 2023 - Apr 2024</span>
+                            <h3>TeleAI</h3>
+                            <span class="item-duration">Aug 2026 - present</span>
                         </div>
+                        <p class="item-role">Research Intern</p>
                         <ul class="item-list">
-                            <li>Modelled networks with 15k+ nodes using NetworkX to surface influence through centrality metrics.</li>
-                            <li>Benchmarked link prediction algorithms including Common Neighbours, Jaccard, graph autoencoders, and node2vec.</li>
+                            <li>Exploring MoPD methods for improving preference-aligned distillation in large language models.</li>
+                            <li>Investigating stable long-horizon distillation for OPD to improve training reliability over extended reasoning trajectories.</li>
                         </ul>
                     </article>
-                    <article class="section-item">
-                        <div class="item-heading">
-                            <h3>Eventlite</h3>
-                            <span class="item-duration">Jan 2023 - Apr 2023</span>
-                        </div>
-                        <ul class="item-list">
-                            <li>Delivered a Spring Boot event platform with registration, creation workflows, and robust MVC testing.</li>
-                        </ul>
-                    </article>
-                    </section>
-                </NeumorphicCard>
-                -->
-
-                <!-- <NeumorphicCard class="about-card">
-                    <section class="section-block">
-                        <header class="section-header">
-                            <h2>Beyond Code</h2>
-                            <p class="section-subtitle">Photography keeps my design instincts sharp.</p>
-                        </header>
-                        <p class="item-text">
-                            I tell stories through lenses, experimenting with composition and post-processing to uncover new
-                            perspectives. Visual storytelling feeds directly into the way I craft thoughtful, human products.
-                        </p> -->
-                        <!-- <p class="item-text">
-                            Browse my
-                            <a class="inline-link" href="/plog">photography journal</a>
-                            for curated sets blending light, color, and narrative.
-                        </p> -->
-                    <!-- </section>
-                </NeumorphicCard> -->
-            </div>
-
-            <div class="about-column">
-                <NeumorphicCard class="about-card">
-                    <section class="section-block">
-                        <header class="section-header">
-                            <h2>Experience</h2>
-                        </header>
                     <article class="section-item">
                         <div class="item-heading">
                             <h3>University of Manchester</h3>
-                            <span class="item-duration">Jun 2024 - Present</span>
+                            <span class="item-duration">Jun 2024 - Jul 2025</span>
                         </div>
                         <p class="item-role">Research Intern - <a class="inline-link" href="https://chenghua-lin.github.io/" target="_blank" rel="noopener noreferrer">Prof.Chenghua Lin</a>'s research group</p>
                         <ul class="item-list">
@@ -409,7 +369,6 @@ const heroImageAspect = heroImage.width / heroImage.height;
                     </article>
                 </section>
             </NeumorphicCard>
-            </div>
         </div>
 
         <div class="visitor-map-container">
